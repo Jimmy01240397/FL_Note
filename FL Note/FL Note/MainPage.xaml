@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:FL_Note"
+             xmlns:tt="clr-namespace:TouchTracking.Forms;assembly=TouchTracking.Forms"
+             xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+             x:Class="FL_Note.MainPage">
+    <Grid>
+        <Grid x:Name="Drawing" BackgroundColor="White" IsVisible="True">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+
+            <skia:SKCanvasView x:Name="backView"
+                               PaintSurface="OnBackViewPaintSurface" />
+
+            <skia:SKCanvasView x:Name="canvasView"
+                               PaintSurface="OnCanvasViewPaintSurface" />
+
+            <local:GradientLayout x:Name="controlbutton" Grid.Row="1" ColorsList="Blue,White,Blue" Mode="ToRight">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnControlerTripleClick" />
+                    </Grid.GestureRecognizers>
+                
+                    <Button Grid.Column="1"
+                            x:Name="clear"
+                            Text="clear" 
+                            Clicked="OnClearClicked"/>
+                </Grid>
+            </local:GradientLayout>
+
+            <Grid.Effects>
+                <tt:TouchEffect Capture="True"
+                                TouchAction="OnTouchEffectAction" />
+            </Grid.Effects>
+        </Grid>
+        <Grid x:Name="controler" IsVisible="False">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="75"/>
+            </Grid.RowDefinitions>
+            <Label Text="Welcome to Xamarin.Forms!" 
+           HorizontalOptions="Center"
+           VerticalOptions="CenterAndExpand" />
+            <Button Grid.Row="1"
+                    x:Name="BackToDraw"
+                    Text="前往表演頁面" 
+                    Clicked="OnControlerClick"/>
+        </Grid>
+    </Grid>
+
+</ContentPage>
