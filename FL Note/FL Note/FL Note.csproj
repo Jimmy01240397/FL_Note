@@ -10,8 +10,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="color-palette.png" />
+    <None Remove="colorpalette.png" />
+    <None Remove="colorpaletteBlack.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="colorpalette.png" />
+    <EmbeddedResource Include="colorpaletteBlack.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="SkiaSharp.Views.Forms" Version="1.68.0" />
     <PackageReference Include="TouchTracking.Forms" Version="1.1.0" />
     <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
 </Project>

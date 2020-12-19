@@ -32,6 +32,12 @@ namespace FL_Note {
         private global::Xamarin.Forms.Button clear;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]
+        private global::Xamarin.Forms.Grid choosecolor;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]
+        private global::FL_Note.MyImageButton ChooseColorButton;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]
         private global::Xamarin.Forms.Grid controler;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]
@@ -45,6 +51,8 @@ namespace FL_Note {
             canvasView = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::SkiaSharp.Views.Forms.SKCanvasView>(this, "canvasView");
             controlbutton = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::FL_Note.GradientLayout>(this, "controlbutton");
             clear = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Button>(this, "clear");
+            choosecolor = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Grid>(this, "choosecolor");
+            ChooseColorButton = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::FL_Note.MyImageButton>(this, "ChooseColorButton");
             controler = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Grid>(this, "controler");
             BackToDraw = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Button>(this, "BackToDraw");
         }

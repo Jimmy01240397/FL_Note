@@ -7,8 +7,10 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using TouchTracking;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 //using SkiaSharp;
 
 namespace FL_Note
@@ -23,10 +25,11 @@ namespace FL_Note
         SKPaint paint = new SKPaint
         {
             Style = SKPaintStyle.Stroke,
-            Color = SKColors.Blue,
-            StrokeWidth = 10,
+            Color = SKColors.Black,
+            StrokeWidth = 15,
             StrokeCap = SKStrokeCap.Round,
-            StrokeJoin = SKStrokeJoin.Round
+            StrokeJoin = SKStrokeJoin.Round,
+            BlendMode = SKBlendMode.Src
         };
 
         public MainPage()
@@ -140,8 +143,29 @@ namespace FL_Note
             }
         }
 
+        void OnChooseColorClicked(object sender, EventArgs e)
+        {
+            choosecolor.IsVisible = !choosecolor.IsVisible;
+        }
+
+        void StopChooseColor(object sender, EventArgs e)
+        {
+            choosecolor.IsVisible = false;
+        }
+
+        void ChooseColor(object sender, EventArgs e)
+        {
+            paint.Color = ((Button)sender).BackgroundColor.ToSKColor();
+            ChooseColorButton.BackgroundColor = ((Button)sender).BackgroundColor;
+            ChooseColorButton.BorderColor = ((Button)sender).BackgroundColor == Color.Transparent ? Color.Black : Color.White;
+            string assemblyName = GetType().GetTypeInfo().Assembly.GetName().Name;
+            ChooseColorButton.Source = ImageSource.FromResource(assemblyName + "." + (((Button)sender).BackgroundColor == Color.Transparent ? "colorpaletteBlack.png" : "colorpalette.png"), typeof(ImageResourceExtension).GetTypeInfo().Assembly);
+            choosecolor.IsVisible = false;
+        }
+
         void OnClearClicked(object sender, EventArgs e)
         {
+            Type type = sender.GetType();
             completedPaths.Clear();
             inProgressPaths.Clear();
             sKImage = null;
@@ -195,6 +219,11 @@ namespace FL_Note
         {
             Drawing.IsVisible = true;
             controler.IsVisible = false;
+        }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+
         }
     }
 
@@ -253,5 +282,29 @@ namespace FL_Note
         ToTopRight,
         ToBottomLeft,
         ToBottomRight
+    }
+
+    [ContentProperty("Source")]
+    public class ImageResourceExtension : IMarkupExtension<ImageSource>
+    {
+        public string Source { set; get; }
+
+        public ImageSource ProvideValue(IServiceProvider serviceProvider)
+        {
+            if (String.IsNullOrEmpty(Source))
+            {
+                IXmlLineInfoProvider lineInfoProvider = serviceProvider.GetService(typeof(IXmlLineInfoProvider)) as IXmlLineInfoProvider;
+                IXmlLineInfo lineInfo = (lineInfoProvider != null) ? lineInfoProvider.XmlLineInfo : new XmlLineInfo();
+                throw new XamlParseException("ImageResourceExtension requires Source property to be set", lineInfo);
+            }
+
+            string assemblyName = GetType().GetTypeInfo().Assembly.GetName().Name;
+            return ImageSource.FromResource(assemblyName + "." + Source, typeof(ImageResourceExtension).GetTypeInfo().Assembly);
+        }
+
+        object IMarkupExtension.ProvideValue(IServiceProvider serviceProvider)
+        {
+            return (this as IMarkupExtension<ImageSource>).ProvideValue(serviceProvider);
+        }
     }
 }

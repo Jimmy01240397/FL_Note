@@ -7,41 +7,77 @@
              x:Class="FL_Note.MainPage">
     <Grid>
         <Grid x:Name="Drawing" BackgroundColor="White" IsVisible="True">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition Height="50"/>
-            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
 
-            <skia:SKCanvasView x:Name="backView"
+                <skia:SKCanvasView x:Name="backView"
                                PaintSurface="OnBackViewPaintSurface" />
 
-            <skia:SKCanvasView x:Name="canvasView"
+                <skia:SKCanvasView x:Name="canvasView"
                                PaintSurface="OnCanvasViewPaintSurface" />
 
-            <local:GradientLayout x:Name="controlbutton" Grid.Row="1" ColorsList="Blue,White,Blue" Mode="ToRight">
-                <Grid >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
+                <local:GradientLayout x:Name="controlbutton" Grid.Row="1" ColorsList="Blue,White,Blue" Mode="ToRight">
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
 
-                    <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnControlerTripleClick" />
-                    </Grid.GestureRecognizers>
-                
-                    <Button Grid.Column="1"
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnControlerTripleClick" />
+                        </Grid.GestureRecognizers>
+
+                        <Button Grid.Column="1"
                             x:Name="clear"
                             Text="clear" 
                             Clicked="OnClearClicked"/>
-                </Grid>
-            </local:GradientLayout>
+                    </Grid>
+                </local:GradientLayout>
 
-            <Grid.Effects>
-                <tt:TouchEffect Capture="True"
+                <Grid.Effects>
+                    <tt:TouchEffect Capture="True"
                                 TouchAction="OnTouchEffectAction" />
-            </Grid.Effects>
+                </Grid.Effects>
+            </Grid>
+
+            <Grid x:Name="choosecolor" IsVisible="False">
+                <StackLayout BackgroundColor="Black" Opacity="0.5">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="StopChooseColor"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <Button BorderColor="White" BorderWidth="2" BackgroundColor="Black" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" BorderRadius="15" WidthRequest="30" HeightRequest="30" TranslationX="-37.5" TranslationY="-130" Clicked="ChooseColor"/>
+                <Button BorderColor="White" BorderWidth="2" BackgroundColor="Red" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" BorderRadius="15" WidthRequest="30" HeightRequest="30" TranslationX="-37.5" TranslationY="-180" Clicked="ChooseColor"/>
+                <Button BorderColor="White" BorderWidth="2" BackgroundColor="Orange" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" BorderRadius="15" WidthRequest="30" HeightRequest="30" TranslationX="-37.5" TranslationY="-230" Clicked="ChooseColor"/>
+                <Button BorderColor="White" BorderWidth="2" BackgroundColor="Yellow" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" BorderRadius="15" WidthRequest="30" HeightRequest="30" TranslationX="-37.5" TranslationY="-280" Clicked="ChooseColor"/>
+                <Button BorderColor="White" BorderWidth="2" BackgroundColor="LawnGreen" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" BorderRadius="15" WidthRequest="30" HeightRequest="30" TranslationX="-37.5" TranslationY="-330" Clicked="ChooseColor"/>
+                <Button BorderColor="White" BorderWidth="2" BackgroundColor="Blue" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" BorderRadius="15" WidthRequest="30" HeightRequest="30" TranslationX="-37.5" TranslationY="-380" Clicked="ChooseColor"/>
+                <Button BorderColor="White" BorderWidth="2" BackgroundColor="Purple" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" BorderRadius="15" WidthRequest="30" HeightRequest="30" TranslationX="-37.5" TranslationY="-430" Clicked="ChooseColor"/>
+                <Button BorderColor="White" BorderWidth="2" BackgroundColor="Brown" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" BorderRadius="15" WidthRequest="30" HeightRequest="30" TranslationX="-37.5" TranslationY="-480" Clicked="ChooseColor"/>
+                <Button BorderColor="White" BorderWidth="2" BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" BorderRadius="15" WidthRequest="30" HeightRequest="30" TranslationX="-37.5" TranslationY="-530" Clicked="ChooseColor"/>
+            </Grid>
+            
+            <local:MyImageButton 
+                   x:Name="ChooseColorButton"
+                   Source="{local:ImageResource colorpalette.png}"
+                   BorderColor="White"
+                   BackgroundColor="Black"
+                   CornerRadius="100"
+                   ButtonHeight="45"
+                   ButtonWidth="45"
+                   ImageHeight="20"
+                   ImageWidth="20"
+                   TranslationX="-30"
+                   TranslationY="-70"
+                   HorizontalOptions="End"
+                   VerticalOptions="End"
+                   Clicked="OnChooseColorClicked"/>
         </Grid>
+
         <Grid x:Name="controler" IsVisible="False">
             <Grid.RowDefinitions>
                 <RowDefinition />
