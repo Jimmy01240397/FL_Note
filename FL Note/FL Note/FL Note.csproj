@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>FL_Note</AssemblyName>
+    <RootNamespace>FL_Note</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -13,20 +15,30 @@
     <None Remove="color-palette.png" />
     <None Remove="colorpalette.png" />
     <None Remove="colorpaletteBlack.png" />
+    <None Remove="delete.png" />
+    <None Remove="edit.png" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="colorpalette.png" />
     <EmbeddedResource Include="colorpaletteBlack.png" />
+    <EmbeddedResource Include="delete.png" />
+    <EmbeddedResource Include="edit.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SkiaSharp.Views.Forms" Version="1.68.0" />
+    <PackageReference Include="SkiaSharp.Views.Forms" Version="1.68.3" />
     <PackageReference Include="TouchTracking.Forms" Version="1.1.0" />
-    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
+    <PackageReference Include="Xamarin.Forms" Version="4.6.0.800" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Template\ShowTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

@@ -11,9 +11,9 @@ public class AsyncLayoutInflater_OnInflateFinishedListenerImplementor
 	public static final String __md_methods;
 	static {
 		__md_methods = 
-			"n_onInflateFinished:(Landroid/view/View;ILandroid/view/ViewGroup;)V:GetOnInflateFinished_Landroid_view_View_ILandroid_view_ViewGroup_Handler:Android.Support.V4.View.AsyncLayoutInflater/IOnInflateFinishedListenerInvoker, Xamarin.Android.Support.Core.UI\n" +
+			"n_onInflateFinished:(Landroid/view/View;ILandroid/view/ViewGroup;)V:GetOnInflateFinished_Landroid_view_View_ILandroid_view_ViewGroup_Handler:Android.Support.V4.View.AsyncLayoutInflater/IOnInflateFinishedListenerInvoker, Xamarin.Android.Support.AsyncLayoutInflater\n" +
 			"";
-		mono.android.Runtime.register ("Android.Support.V4.View.AsyncLayoutInflater+IOnInflateFinishedListenerImplementor, Xamarin.Android.Support.Core.UI", AsyncLayoutInflater_OnInflateFinishedListenerImplementor.class, __md_methods);
+		mono.android.Runtime.register ("Android.Support.V4.View.AsyncLayoutInflater+IOnInflateFinishedListenerImplementor, Xamarin.Android.Support.AsyncLayoutInflater", AsyncLayoutInflater_OnInflateFinishedListenerImplementor.class, __md_methods);
 	}
 
 
@@ -21,7 +21,7 @@ public class AsyncLayoutInflater_OnInflateFinishedListenerImplementor
 	{
 		super ();
 		if (getClass () == AsyncLayoutInflater_OnInflateFinishedListenerImplementor.class)
-			mono.android.TypeManager.Activate ("Android.Support.V4.View.AsyncLayoutInflater+IOnInflateFinishedListenerImplementor, Xamarin.Android.Support.Core.UI", "", this, new java.lang.Object[] {  });
+			mono.android.TypeManager.Activate ("Android.Support.V4.View.AsyncLayoutInflater+IOnInflateFinishedListenerImplementor, Xamarin.Android.Support.AsyncLayoutInflater", "", this, new java.lang.Object[] {  });
 	}
 
 

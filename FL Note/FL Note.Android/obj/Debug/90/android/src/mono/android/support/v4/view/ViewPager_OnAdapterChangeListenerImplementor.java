@@ -11,9 +11,9 @@ public class ViewPager_OnAdapterChangeListenerImplementor
 	public static final String __md_methods;
 	static {
 		__md_methods = 
-			"n_onAdapterChanged:(Landroid/support/v4/view/ViewPager;Landroid/support/v4/view/PagerAdapter;Landroid/support/v4/view/PagerAdapter;)V:GetOnAdapterChanged_Landroid_support_v4_view_ViewPager_Landroid_support_v4_view_PagerAdapter_Landroid_support_v4_view_PagerAdapter_Handler:Android.Support.V4.View.ViewPager/IOnAdapterChangeListenerInvoker, Xamarin.Android.Support.Core.UI\n" +
+			"n_onAdapterChanged:(Landroid/support/v4/view/ViewPager;Landroid/support/v4/view/PagerAdapter;Landroid/support/v4/view/PagerAdapter;)V:GetOnAdapterChanged_Landroid_support_v4_view_ViewPager_Landroid_support_v4_view_PagerAdapter_Landroid_support_v4_view_PagerAdapter_Handler:Android.Support.V4.View.ViewPager/IOnAdapterChangeListenerInvoker, Xamarin.Android.Support.ViewPager\n" +
 			"";
-		mono.android.Runtime.register ("Android.Support.V4.View.ViewPager+IOnAdapterChangeListenerImplementor, Xamarin.Android.Support.Core.UI", ViewPager_OnAdapterChangeListenerImplementor.class, __md_methods);
+		mono.android.Runtime.register ("Android.Support.V4.View.ViewPager+IOnAdapterChangeListenerImplementor, Xamarin.Android.Support.ViewPager", ViewPager_OnAdapterChangeListenerImplementor.class, __md_methods);
 	}
 
 
@@ -21,7 +21,7 @@ public class ViewPager_OnAdapterChangeListenerImplementor
 	{
 		super ();
 		if (getClass () == ViewPager_OnAdapterChangeListenerImplementor.class)
-			mono.android.TypeManager.Activate ("Android.Support.V4.View.ViewPager+IOnAdapterChangeListenerImplementor, Xamarin.Android.Support.Core.UI", "", this, new java.lang.Object[] {  });
+			mono.android.TypeManager.Activate ("Android.Support.V4.View.ViewPager+IOnAdapterChangeListenerImplementor, Xamarin.Android.Support.ViewPager", "", this, new java.lang.Object[] {  });
 	}
 
 

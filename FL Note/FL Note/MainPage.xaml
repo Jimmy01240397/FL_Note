@@ -7,20 +7,20 @@
              x:Class="FL_Note.MainPage">
     <Grid>
         <Grid x:Name="Drawing" BackgroundColor="White" IsVisible="True">
-            <Grid>
+            <Grid RowSpacing="0" ColumnSpacing="0">
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
 
                 <skia:SKCanvasView x:Name="backView"
-                               PaintSurface="OnBackViewPaintSurface" />
+                                PaintSurface="OnBackViewPaintSurface" />
 
                 <skia:SKCanvasView x:Name="canvasView"
-                               PaintSurface="OnCanvasViewPaintSurface" />
+                                PaintSurface="OnCanvasViewPaintSurface" />
 
                 <local:GradientLayout x:Name="controlbutton" Grid.Row="1" ColorsList="Blue,White,Blue" Mode="ToRight">
-                    <Grid >
+                    <Grid RowSpacing="0" ColumnSpacing="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
                             <ColumnDefinition Width="2*"/>
@@ -58,39 +58,48 @@
                 <Button BorderColor="White" BorderWidth="2" BackgroundColor="Blue" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" BorderRadius="15" WidthRequest="30" HeightRequest="30" TranslationX="-37.5" TranslationY="-380" Clicked="ChooseColor"/>
                 <Button BorderColor="White" BorderWidth="2" BackgroundColor="Purple" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" BorderRadius="15" WidthRequest="30" HeightRequest="30" TranslationX="-37.5" TranslationY="-430" Clicked="ChooseColor"/>
                 <Button BorderColor="White" BorderWidth="2" BackgroundColor="Brown" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" BorderRadius="15" WidthRequest="30" HeightRequest="30" TranslationX="-37.5" TranslationY="-480" Clicked="ChooseColor"/>
-                <Button BorderColor="White" BorderWidth="2" BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" BorderRadius="15" WidthRequest="30" HeightRequest="30" TranslationX="-37.5" TranslationY="-530" Clicked="ChooseColor"/>
+                <Button BorderColor="Black" BorderWidth="2" BackgroundColor="White" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" BorderRadius="15" WidthRequest="30" HeightRequest="30" TranslationX="-37.5" TranslationY="-530" Clicked="ChooseColor"/>
+                <Button BorderColor="White" BorderWidth="2" BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" BorderRadius="15" WidthRequest="30" HeightRequest="30" TranslationX="-37.5" TranslationY="-580" Clicked="ChooseColor"/>
             </Grid>
             
             <local:MyImageButton 
-                   x:Name="ChooseColorButton"
-                   Source="{local:ImageResource colorpalette.png}"
-                   BorderColor="White"
-                   BackgroundColor="Black"
-                   CornerRadius="100"
-                   ButtonHeight="45"
-                   ButtonWidth="45"
-                   ImageHeight="20"
-                   ImageWidth="20"
-                   TranslationX="-30"
-                   TranslationY="-70"
-                   HorizontalOptions="End"
-                   VerticalOptions="End"
-                   Clicked="OnChooseColorClicked"/>
+                    x:Name="ChooseColorButton"
+                    Source="{local:ImageResource colorpalette.png}"
+                    BorderColor="White"
+                    BackgroundColor="Black"
+                    CornerRadius="100"
+                    ButtonHeight="45"
+                    ButtonWidth="45"
+                    ImageHeight="20"
+                    ImageWidth="20"
+                    TranslationX="-30"
+                    TranslationY="-70"
+                    HorizontalOptions="End"
+                    VerticalOptions="End"
+                    Clicked="OnChooseColorClicked"/>
         </Grid>
 
-        <Grid x:Name="controler" IsVisible="False">
+        <Grid x:Name="controler" RowSpacing="0" ColumnSpacing="0" IsVisible="False">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition Height="75"/>
             </Grid.RowDefinitions>
-            <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-            <Button Grid.Row="1"
-                    x:Name="BackToDraw"
-                    Text="前往表演頁面" 
-                    Clicked="OnControlerClick"/>
+
+            <ScrollView>
+                <StackLayout>
+                    <local:ShowTemplate HorizontalOptions="FillAndExpand" VerticalOptions="Start" HeightRequest="200"/>
+                    <local:ShowTemplate HorizontalOptions="FillAndExpand" VerticalOptions="Start" HeightRequest="200"/>
+                </StackLayout>
+            </ScrollView>
+
+            <StackLayout BackgroundColor="Blue" Grid.Row="1" x:Name="BackToDraw">
+                <Label Text="前往表演頁面"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnControlerClick"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
         </Grid>
     </Grid>
-
 </ContentPage>

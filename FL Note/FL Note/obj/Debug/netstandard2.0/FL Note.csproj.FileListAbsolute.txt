@@ -1,12 +1,13 @@
-C:\Users\user\Desktop\FL Note\FL Note\FL Note\bin\Debug\netstandard2.0\FL Note.deps.json
-C:\Users\user\Desktop\FL Note\FL Note\FL Note\bin\Debug\netstandard2.0\FL Note.dll
 C:\Users\user\Desktop\FL Note\FL Note\FL Note\obj\Debug\netstandard2.0\App.xaml.g.cs
 C:\Users\user\Desktop\FL Note\FL Note\FL Note\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
 C:\Users\user\Desktop\FL Note\FL Note\FL Note\obj\Debug\netstandard2.0\FL Note.csproj.CoreCompileInputs.cache
 C:\Users\user\Desktop\FL Note\FL Note\FL Note\obj\Debug\netstandard2.0\FL Note.AssemblyInfoInputs.cache
 C:\Users\user\Desktop\FL Note\FL Note\FL Note\obj\Debug\netstandard2.0\FL Note.AssemblyInfo.cs
-C:\Users\user\Desktop\FL Note\FL Note\FL Note\bin\Debug\netstandard2.0\FL Note.pdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note\obj\Debug\netstandard2.0\XamlC.stamp
-C:\Users\user\Desktop\FL Note\FL Note\FL Note\obj\Debug\netstandard2.0\FL Note.dll
-C:\Users\user\Desktop\FL Note\FL Note\FL Note\obj\Debug\netstandard2.0\FL Note.pdb
+C:\Users\user\Desktop\FL Note\FL Note\FL Note\obj\Debug\netstandard2.0\Template\ShowTemplate.xaml.g.cs
 C:\Users\user\Desktop\FL Note\FL Note\FL Note\obj\Debug\netstandard2.0\FL Note.csprojAssemblyReference.cache
+C:\Users\user\Desktop\FL Note\FL Note\FL Note\bin\Debug\netstandard2.0\FL_Note.deps.json
+C:\Users\user\Desktop\FL Note\FL Note\FL Note\bin\Debug\netstandard2.0\FL_Note.dll
+C:\Users\user\Desktop\FL Note\FL Note\FL Note\bin\Debug\netstandard2.0\FL_Note.pdb
+C:\Users\user\Desktop\FL Note\FL Note\FL Note\obj\Debug\netstandard2.0\FL_Note.dll
+C:\Users\user\Desktop\FL Note\FL Note\FL Note\obj\Debug\netstandard2.0\FL_Note.pdb

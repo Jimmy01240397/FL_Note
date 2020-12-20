@@ -157,9 +157,9 @@ namespace FL_Note
         {
             paint.Color = ((Button)sender).BackgroundColor.ToSKColor();
             ChooseColorButton.BackgroundColor = ((Button)sender).BackgroundColor;
-            ChooseColorButton.BorderColor = ((Button)sender).BackgroundColor == Color.Transparent ? Color.Black : Color.White;
+            ChooseColorButton.BorderColor = ((Button)sender).BackgroundColor == Color.Transparent || ((Button)sender).BackgroundColor == Color.White ? Color.Black : Color.White;
             string assemblyName = GetType().GetTypeInfo().Assembly.GetName().Name;
-            ChooseColorButton.Source = ImageSource.FromResource(assemblyName + "." + (((Button)sender).BackgroundColor == Color.Transparent ? "colorpaletteBlack.png" : "colorpalette.png"), typeof(ImageResourceExtension).GetTypeInfo().Assembly);
+            ChooseColorButton.Source = ImageSource.FromResource(assemblyName + "." + (((Button)sender).BackgroundColor == Color.Transparent || ((Button)sender).BackgroundColor == Color.White ? "colorpaletteBlack.png" : "colorpalette.png"), typeof(ImageResourceExtension).GetTypeInfo().Assembly);
             choosecolor.IsVisible = false;
         }
 
@@ -219,11 +219,6 @@ namespace FL_Note
         {
             Drawing.IsVisible = true;
             controler.IsVisible = false;
-        }
-
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        {
-
         }
     }
 

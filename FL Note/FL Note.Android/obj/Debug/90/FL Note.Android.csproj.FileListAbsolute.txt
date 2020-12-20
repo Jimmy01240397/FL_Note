@@ -1,7 +1,5 @@
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\bin\Debug\FL Note.Android.dll
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\bin\Debug\FL Note.Android.pdb
-C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\bin\Debug\com.companyname.FL_Note.apk
-C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\bin\Debug\com.companyname.FL_Note-Signed.apk
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\bin\Debug\FL Note.dll
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\bin\Debug\FL Note.pdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\bin\Debug\FL Note.dll.mdb
@@ -13,9 +11,6 @@ C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\res.flag
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\FL Note.Android.csproj.CoreCompileInputs.cache
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\XamlC.stamp
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\FL Note.Android.csproj.CopyComplete
-C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\FL Note.Android.dll
-C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\FL Note.Android.pdb
-C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\bin\com.companyname.FL_Note.apk
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\res\layout\tabbar.xml
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\res\layout\toolbar.xml
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\res\values\styles.xml
@@ -56,7 +51,20 @@ C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\bin\Debug\System.Xml.pdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\bin\Debug\Xamarin.Forms.Core.pdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\bin\Debug\Xamarin.Forms.Platform.Android.pdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\bin\Debug\Xamarin.Forms.Xaml.pdb
-C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\linksrc\FL Note.Android.pdb
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\res\values\strings.xml
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\bin\Debug\com.jimmiker.FL_Note.apk
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\bin\Debug\com.jimmiker.FL_Note-Signed.apk
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\bin\com.jimmiker.FL_Note.apk
+C:\Users\user\Desktop\FL Note\FL Note\FL Note\bin\Debug\netstandard2.0\FL Note.dll
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\bin\Debug\FL_Note.dll
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\bin\Debug\FL_Note.pdb
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\bin\Debug\FL_Note.dll.mdb
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\bin\Debug\FL_Note.Android.dll
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\bin\Debug\FL_Note.Android.pdb
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\_VerifyXamarinAndroidSupportVersions.stamp
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\FL_Note.Android.dll
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\FL_Note.Android.pdb
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\linksrc\FL_Note.Android.pdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\linksrc\FormsViewGroup.pdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\linksrc\Mono.Android.pdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\linksrc\mscorlib.pdb
@@ -78,9 +86,9 @@ C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\linksrc\Syste
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\linksrc\System.ServiceModel.Internals.pdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\linksrc\System.Web.Services.pdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\linksrc\Mono.Security.pdb
-C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\linksrc\FL Note.dll.mdb
-C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\FL Note.dll.mdb
-C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\FL Note.Android.pdb
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\linksrc\FL_Note.dll.mdb
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\FL_Note.dll.mdb
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\FL_Note.Android.pdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\FormsViewGroup.pdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\Mono.Android.pdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\Mono.Security.pdb
@@ -102,8 +110,6 @@ C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\asset
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\Xamarin.Forms.Core.pdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\Xamarin.Forms.Platform.Android.pdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\Xamarin.Forms.Xaml.pdb
-C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\res\values\strings.xml
-C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\res\drawable\colorpalette.png
-C:\Users\user\Desktop\FL Note\FL Note\FL Note\bin\Debug\netstandard2.0\FL Note.dll
-C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\bin\Debug\FL Note.dll.mdb
-C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\linksrc\FL Note.dll.mdb
+C:\Users\user\Desktop\FL Note\FL Note\FL Note\bin\Debug\netstandard2.0\FL_Note.dll
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\bin\Debug\FL_Note.dll.mdb
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\linksrc\FL_Note.dll.mdb

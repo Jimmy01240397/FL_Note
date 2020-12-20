@@ -2,7 +2,7 @@ package md51558244f76c53b6aeda52c8a337f2c37;
 
 
 public class PageExtensions_EmbeddedFragment
-	extends android.app.Fragment
+	extends android.support.v4.app.Fragment
 	implements
 		mono.android.IGCUserPeer
 {
