@@ -11,7 +11,11 @@ namespace FL_Note
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new CustomNavigationPage(new MainPage())
+            {
+                BarBackgroundColor = Color.White,
+                BarTextColor = Color.Blue
+            };
         }
 
         protected override void OnStart()

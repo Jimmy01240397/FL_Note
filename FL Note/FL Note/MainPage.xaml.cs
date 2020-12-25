@@ -22,6 +22,7 @@ namespace FL_Note
         SKImage sKImage = null;
         int ControlButtonClickNum = 0;
         Stopwatch ControlButtonClickRate = new Stopwatch();
+        //public NavigationPage navigationPage;
         SKPaint paint = new SKPaint
         {
             Style = SKPaintStyle.Stroke,
@@ -34,7 +35,7 @@ namespace FL_Note
 
         public MainPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         void OnTouchEffectAction(object sender, TouchActionEventArgs args)
@@ -159,12 +160,13 @@ namespace FL_Note
             ChooseColorButton.BackgroundColor = ((Button)sender).BackgroundColor;
             ChooseColorButton.BorderColor = ((Button)sender).BackgroundColor == Color.Transparent || ((Button)sender).BackgroundColor == Color.White ? Color.Black : Color.White;
             string assemblyName = GetType().GetTypeInfo().Assembly.GetName().Name;
-            ChooseColorButton.Source = ImageSource.FromResource(assemblyName + "." + (((Button)sender).BackgroundColor == Color.Transparent || ((Button)sender).BackgroundColor == Color.White ? "colorpaletteBlack.png" : "colorpalette.png"), typeof(ImageResourceExtension).GetTypeInfo().Assembly);
+            ChooseColorButton.Source = ImageSource.FromResource(assemblyName + ".Images." + (((Button)sender).BackgroundColor == Color.Transparent || ((Button)sender).BackgroundColor == Color.White ? "colorpaletteBlack.png" : "colorpalette.png"), typeof(ImageResourceExtension).GetTypeInfo().Assembly);
             choosecolor.IsVisible = false;
         }
 
         void OnClearClicked(object sender, EventArgs e)
         {
+            View view = controlbutton;
             Type type = sender.GetType();
             completedPaths.Clear();
             inProgressPaths.Clear();
@@ -184,16 +186,14 @@ namespace FL_Note
                     break;
                 case 1:
                     {
-                        if(ControlButtonClickRate.ElapsedMilliseconds <= 1000)
-                        {
-                            ControlButtonClickNum++;
-                        }
-                        else
+                        if(ControlButtonClickRate.ElapsedMilliseconds > 1000)
                         {
                             ControlButtonClickNum = 0;
                             ControlButtonClickRate.Stop();
                             ControlButtonClickRate.Reset();
+                            ControlButtonClickRate.Restart();
                         }
+                        ControlButtonClickNum++;
                     }
                     break;
                 case 2:
@@ -202,13 +202,25 @@ namespace FL_Note
                         {
                             Drawing.IsVisible = false;
                             controler.IsVisible = true;
+
+                            ShowTemplate showTemplate1 = new ShowTemplate(this);
+                            showTemplate1.HorizontalOptions = LayoutOptions.FillAndExpand;
+                            showTemplate1.HeightRequest = 330;
+                            ShowPages.Children.Add(showTemplate1);
+
+                            ShowTemplate showTemplate2 = new ShowTemplate(this);
+                            showTemplate2.HorizontalOptions = LayoutOptions.FillAndExpand;
+                            showTemplate2.HeightRequest = 330;
+                            ShowPages.Children.Add(showTemplate2);
+
                             ControlButtonClickNum = 0;
                         }
                         else
                         {
-                            ControlButtonClickNum = 0;
+                            ControlButtonClickNum = 1;
                             ControlButtonClickRate.Stop();
                             ControlButtonClickRate.Reset();
+                            ControlButtonClickRate.Restart();
                         }
                     }
                     break;
@@ -219,6 +231,7 @@ namespace FL_Note
         {
             Drawing.IsVisible = true;
             controler.IsVisible = false;
+            ShowPages.Children.Clear();
         }
     }
 

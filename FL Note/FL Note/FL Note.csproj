@@ -17,18 +17,21 @@
     <None Remove="colorpaletteBlack.png" />
     <None Remove="delete.png" />
     <None Remove="edit.png" />
+    <None Remove="Images\back.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="colorpalette.png" />
-    <EmbeddedResource Include="colorpaletteBlack.png" />
-    <EmbeddedResource Include="delete.png" />
-    <EmbeddedResource Include="edit.png" />
+    <EmbeddedResource Include="Images\back.png" />
+    <EmbeddedResource Include="Images\colorpalette.png" />
+    <EmbeddedResource Include="Images\colorpaletteBlack.png" />
+    <EmbeddedResource Include="Images\delete.png" />
+    <EmbeddedResource Include="Images\edit.png" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="SkiaSharp.Views.Forms" Version="1.68.3" />
     <PackageReference Include="TouchTracking.Forms" Version="1.1.0" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.800" />
   </ItemGroup>
 
@@ -37,7 +40,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Template\ShowTemplate.xaml">
+    <EmbeddedResource Update="SettingTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ShowTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

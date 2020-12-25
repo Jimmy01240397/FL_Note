@@ -48,9 +48,6 @@ C:\Users\user\Desktop\FL Note\FL Note\FL Note.iOS\bin\iPhoneSimulator\Debug\vi\X
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.iOS\bin\iPhoneSimulator\Debug\zh-HK\Xamarin.Forms.Platform.iOS.resources.dll
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.iOS\bin\iPhoneSimulator\Debug\zh-Hans\Xamarin.Forms.Platform.iOS.resources.dll
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.iOS\bin\iPhoneSimulator\Debug\zh-Hant\Xamarin.Forms.Platform.iOS.resources.dll
-C:\Users\user\Desktop\FL Note\FL Note\FL Note.iOS\bin\iPhoneSimulator\Debug\FL Note.dll
-C:\Users\user\Desktop\FL Note\FL Note\FL Note.iOS\bin\iPhoneSimulator\Debug\FL Note.pdb
-C:\Users\user\Desktop\FL Note\FL Note\FL Note.iOS\bin\iPhoneSimulator\Debug\FL Note.dll.mdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.iOS\obj\iPhoneSimulator\Debug\ibtool\_BundleResourceWithLogicalName.items
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.iOS\obj\iPhoneSimulator\Debug\actool\_PartialAppManifest.items
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.iOS\obj\iPhoneSimulator\Debug\actool\_BundleResourceWithLogicalName.items
@@ -63,3 +60,7 @@ C:\Users\user\Desktop\FL Note\FL Note\FL Note.iOS\obj\iPhoneSimulator\Debug\Xaml
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.iOS\obj\iPhoneSimulator\Debug\FL Note.iOS.csproj.CopyComplete
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.iOS\obj\iPhoneSimulator\Debug\FL Note.iOS.exe
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.iOS\obj\iPhoneSimulator\Debug\FL Note.iOS.pdb
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.iOS\bin\iPhoneSimulator\Debug\FL_Note.dll
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.iOS\bin\iPhoneSimulator\Debug\FL_Note.pdb
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.iOS\bin\iPhoneSimulator\Debug\Xamarin.Essentials.dll
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.iOS\bin\iPhoneSimulator\Debug\Xamarin.Essentials.pdb

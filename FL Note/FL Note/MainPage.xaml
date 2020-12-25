@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:FL_Note"
              xmlns:tt="clr-namespace:TouchTracking.Forms;assembly=TouchTracking.Forms"
              xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+             NavigationPage.HasNavigationBar="False"
              x:Class="FL_Note.MainPage">
     <Grid>
         <Grid x:Name="Drawing" BackgroundColor="White" IsVisible="True">
@@ -64,7 +65,7 @@
             
             <local:MyImageButton 
                     x:Name="ChooseColorButton"
-                    Source="{local:ImageResource colorpalette.png}"
+                    Source="{local:ImageResource Images.colorpalette.png}"
                     BorderColor="White"
                     BackgroundColor="Black"
                     CornerRadius="100"
@@ -86,14 +87,14 @@
             </Grid.RowDefinitions>
 
             <ScrollView>
-                <StackLayout>
-                    <local:ShowTemplate HorizontalOptions="FillAndExpand" VerticalOptions="Start" HeightRequest="200"/>
-                    <local:ShowTemplate HorizontalOptions="FillAndExpand" VerticalOptions="Start" HeightRequest="200"/>
+                <StackLayout x:Name="ShowPages" BackgroundColor="#F0F0F0">
                 </StackLayout>
             </ScrollView>
 
             <StackLayout BackgroundColor="Blue" Grid.Row="1" x:Name="BackToDraw">
                 <Label Text="前往表演頁面"
+                       TextColor="White"
+                       FontSize="20"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
                 <StackLayout.GestureRecognizers>

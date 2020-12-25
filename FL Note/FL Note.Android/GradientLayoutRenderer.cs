@@ -31,7 +31,7 @@ namespace FL_Note.Droid
             GradientLayout layout = Element as GradientLayout;
             Colors = layout.Colors;
             Mode = layout.Mode;
-
+            
             Android.Graphics.LinearGradient gradient;
 
             int[] colors = new int[Colors.Length];

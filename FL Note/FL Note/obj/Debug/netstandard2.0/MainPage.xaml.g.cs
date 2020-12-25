@@ -41,6 +41,9 @@ namespace FL_Note {
         private global::Xamarin.Forms.Grid controler;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::Xamarin.Forms.StackLayout ShowPages;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private global::Xamarin.Forms.StackLayout BackToDraw;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
@@ -54,6 +57,7 @@ namespace FL_Note {
             choosecolor = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Grid>(this, "choosecolor");
             ChooseColorButton = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::FL_Note.MyImageButton>(this, "ChooseColorButton");
             controler = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Grid>(this, "controler");
+            ShowPages = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.StackLayout>(this, "ShowPages");
             BackToDraw = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.StackLayout>(this, "BackToDraw");
         }
     }

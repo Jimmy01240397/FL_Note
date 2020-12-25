@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:FL_Note"
+             BackgroundColor="White"
+             x:Class="FL_Note.ShowTemplate">
+    <Frame BorderColor="Black" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <StackLayout Margin="-19">
+            <Grid VerticalOptions="FillAndExpand" RowSpacing="0" ColumnSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="10"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="1" RowSpacing="0" ColumnSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="50" />
+                    </Grid.ColumnDefinitions>
+                    <RadioButton Text="test" GroupName="UsingPage"/>
+                    <ImageButton Grid.Column="1" BackgroundColor="White" Source="{local:ImageResource Images.edit.png}" Clicked="EditButton_Clicked"/>
+                    <ImageButton Grid.Column="2" BackgroundColor="White" Source="{local:ImageResource Images.delete.png}"/>
+                </Grid>
+                <BoxView Grid.Row="1" Grid.Column="1" BackgroundColor="Gray" HeightRequest="1" VerticalOptions="End"  HorizontalOptions="FillAndExpand"/>
+                <Grid Grid.Row="2" Grid.Column="1" RowSpacing="0" ColumnSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" RowSpacing="0" ColumnSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Label Text="魔術圖：" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Frame x:Name="MagicImage" Grid.Row="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="77" HeightRequest="180" BorderColor="Black">
+                            <Image Margin="-15" BackgroundColor="#FFF8F8"/>
+                        </Frame>
+                    </Grid>
+                    <Grid Grid.Column="1" RowSpacing="0" ColumnSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Label Text="背景圖：" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Frame x:Name="BackGroundImage" Grid.Row="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="78" HeightRequest="180" BorderColor="Black">
+                            <Image Margin="-15" BackgroundColor="#FFF8F8"/>
+                        </Frame>
+                    </Grid>
+                    <Grid Grid.Column="2" RowSpacing="0" ColumnSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Text="觀眾圖片：" Grid.Row="0" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label Text="左上縮圖" Grid.Row="1" TextColor="Blue" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label Text="截圖時機：" Grid.Row="2" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label Text="面朝下" Grid.Row="3" TextColor="Blue" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label Text="儲存截圖：" Grid.Row="4" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label Text="否" Grid.Row="5" TextColor="Blue" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label Text="觸發方法：" Grid.Row="6" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label Text="3指" Grid.Row="7" TextColor="Blue" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label Text="震動：關" Grid.Row="8" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </StackLayout>
+    </Frame>
+</StackLayout>

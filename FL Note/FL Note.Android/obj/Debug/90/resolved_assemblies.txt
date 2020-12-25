@@ -54,6 +54,7 @@ C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\asset
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\Xamarin.Android.Support.Vector.Drawable.dll
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\Xamarin.Android.Support.VersionedParcelable.dll
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\Xamarin.Android.Support.ViewPager.dll
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\Xamarin.Essentials.dll
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\Xamarin.Forms.Core.dll
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\Xamarin.Forms.Platform.Android.dll
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\Xamarin.Forms.Platform.dll
