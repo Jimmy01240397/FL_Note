@@ -41,7 +41,7 @@
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <Label Text="魔術圖：" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                        <Frame x:Name="MagicImage" Grid.Row="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="77" HeightRequest="180" BorderColor="Black">
+                        <Frame x:Name="MagicImage" Grid.Row="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="78" HeightRequest="180" BorderColor="Black">
                             <Image Margin="-15" BackgroundColor="#FFF8F8"/>
                         </Frame>
                     </Grid>

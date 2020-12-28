@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:FL_Note"
+             xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
              x:Class="FL_Note.SettingTemplate"
              NavigationPage.HasBackButton="False">
     <NavigationPage.TitleView>
@@ -9,11 +10,48 @@
             <ImageButton BackgroundColor="White" Source="{local:ImageResource Images.back.png}" Aspect="AspectFit" HorizontalOptions="Start" VerticalOptions="FillAndExpand" WidthRequest="80" Clicked="BackButton_Clicked"/>
         </StackLayout>
     </NavigationPage.TitleView>
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
+
+    <local:MyTabbedPage BarBackgroundColor="White" SelectedTabColor="Blue" UnselectedTabColor="Black" IsSwipeEnabled="False">
+        <local:MyTabbedPage.barTabText>
+            <x:String>魔術圖</x:String>
+            <x:String>背景圖</x:String>
+            <x:String>設定</x:String>
+        </local:MyTabbedPage.barTabText>
+        <local:MyTabbedPage.view>
+            <StackLayout>
+                <Grid RowSpacing="0" ColumnSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="10"/>
+                    </Grid.RowDefinitions>
+                    <Frame x:Name="WorkingImage" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="78" HeightRequest="180" BorderColor="Black">
+                        <Image Margin="-15" BackgroundColor="#FFF8F8"/>
+                    </Frame>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="10"/>
+                        </Grid.ColumnDefinitions>
+                        <ImageButton Grid.Column="1" BackgroundColor="#95B1FA" Source="{local:ImageResource Images.edit2.png}"/>
+                        <ImageButton Grid.Column="2" BackgroundColor="#95B1FA" Source="{local:ImageResource Images.edit2.png}"/>
+                        <ImageButton Grid.Column="3" BackgroundColor="#95B1FA" Source="{local:ImageResource Images.edit2.png}"/>
+                    </Grid>
+                </Grid>
+            </StackLayout>
+            <StackLayout BackgroundColor="Green">
+                <Label Text="Welcome to Xamarin.Forms2.2!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+            </StackLayout>
+            <StackLayout BackgroundColor="Blue">
+                <Label Text="Welcome to Xamarin.Forms2.3!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            </StackLayout>
+        </local:MyTabbedPage.view>
+    </local:MyTabbedPage>
 </ContentPage>

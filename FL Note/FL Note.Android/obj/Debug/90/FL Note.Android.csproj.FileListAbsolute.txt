@@ -107,4 +107,6 @@ C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\asset
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\Xamarin.Forms.Core.pdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\Xamarin.Forms.Platform.Android.pdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\Xamarin.Forms.Xaml.pdb
+C:\Users\user\Desktop\FL Note\FL Note\FL Note\bin\Debug\netstandard2.0\FL_Note.dll
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\bin\Debug\FL_Note.dll.mdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\linksrc\FL_Note.dll.mdb

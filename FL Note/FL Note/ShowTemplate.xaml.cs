@@ -29,8 +29,10 @@ namespace FL_Note
 
         private void EditButton_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new SettingTemplate());
-            
+            (mainPage.FindByName<MyTabbedPage>("controler")).IsVisible = false;
+            SettingTemplate settingTemplate = new SettingTemplate();
+            settingTemplate.mainPage = mainPage;
+            Navigation.PushAsync(settingTemplate);
         }
     }
 }

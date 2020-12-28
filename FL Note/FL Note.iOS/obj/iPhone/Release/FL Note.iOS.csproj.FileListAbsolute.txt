@@ -60,3 +60,5 @@ C:\Users\user\Desktop\FL Note\FL Note\FL Note.iOS\obj\iPhone\Release\XamlC.stamp
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.iOS\obj\iPhone\Release\FL Note.iOS.csproj.CopyComplete
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.iOS\obj\iPhone\Release\FL Note.iOS.exe
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.iOS\obj\iPhone\Release\FL Note.iOS.csprojAssemblyReference.cache
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.iOS\bin\iPhone\Release\Xamarin.Essentials.dll
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.iOS\bin\iPhone\Release\Xamarin.Essentials.pdb
