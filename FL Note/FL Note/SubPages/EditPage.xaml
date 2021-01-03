@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:FL_Note"
+             xmlns:elements="clr-namespace:FL_Note.Elements"
+             xmlns:extensions="clr-namespace:FL_Note.Extensions"
+             xmlns:tt="clr-namespace:TouchTracking.Forms;assembly=TouchTracking.Forms"
+             xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+             x:Class="FL_Note.SubPages.EditPage"
+             NavigationPage.HasBackButton="False">
+    
+    <NavigationPage.TitleView>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
+            <ImageButton BackgroundColor="White" Source="{extensions:ImageResource Images.back.png}" Aspect="AspectFit" HorizontalOptions="Start" VerticalOptions="FillAndExpand" WidthRequest="80" Clicked="BackButton_Clicked"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid RowSpacing="0" ColumnSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
+                <elements:DrawLayout x:Name="drawing" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+
+                <elements:GradientLayout x:Name="controlbutton" Grid.Row="1" ColorsList="Blue,White,Blue" Mode="ToRight">
+                    <Grid RowSpacing="0" ColumnSpacing="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="1"
+                            x:Name="clear"
+                            Text="clear" 
+                            Clicked="OnClearClicked"/>
+                    </Grid>
+                </elements:GradientLayout>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

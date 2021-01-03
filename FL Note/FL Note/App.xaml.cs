@@ -11,7 +11,7 @@ namespace FL_Note
         {
             InitializeComponent();
 
-            MainPage = new CustomNavigationPage(new MainPage())
+            MainPage = new NavigationPage(new MainPage())
             {
                 BarBackgroundColor = Color.White,
                 BarTextColor = Color.Blue

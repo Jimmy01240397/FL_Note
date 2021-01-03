@@ -6,7 +6,7 @@ using TouchTracking;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace FL_Note
+namespace FL_Note.Elements
 {
 	public class MyImageButton : Frame
 	{

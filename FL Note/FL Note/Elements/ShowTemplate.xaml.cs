@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FL_Note.SubPages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace FL_Note
+namespace FL_Note.Elements
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ShowTemplate : StackLayout

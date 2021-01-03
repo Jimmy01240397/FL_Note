@@ -2,8 +2,9 @@
 <StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:FL_Note"
+             xmlns:extensions="clr-namespace:FL_Note.Extensions"
              BackgroundColor="White"
-             x:Class="FL_Note.ShowTemplate">
+             x:Class="FL_Note.Elements.ShowTemplate">
     <Frame BorderColor="Black" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <StackLayout Margin="-19">
             <Grid VerticalOptions="FillAndExpand" RowSpacing="0" ColumnSpacing="0">
@@ -25,8 +26,8 @@
                         <ColumnDefinition Width="50" />
                     </Grid.ColumnDefinitions>
                     <RadioButton Text="test" GroupName="UsingPage"/>
-                    <ImageButton Grid.Column="1" BackgroundColor="White" Source="{local:ImageResource Images.edit.png}" Clicked="EditButton_Clicked"/>
-                    <ImageButton Grid.Column="2" BackgroundColor="White" Source="{local:ImageResource Images.delete.png}"/>
+                    <ImageButton Grid.Column="1" BackgroundColor="White" Source="{extensions:ImageResource Images.edit.png}" Clicked="EditButton_Clicked"/>
+                    <ImageButton Grid.Column="2" BackgroundColor="White" Source="{extensions:ImageResource Images.delete.png}"/>
                 </Grid>
                 <BoxView Grid.Row="1" Grid.Column="1" BackgroundColor="Gray" HeightRequest="1" VerticalOptions="End"  HorizontalOptions="FillAndExpand"/>
                 <Grid Grid.Row="2" Grid.Column="1" RowSpacing="0" ColumnSpacing="0">

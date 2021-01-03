@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using FL_Note;
 using FL_Note.Droid;
+using FL_Note.Elements;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 

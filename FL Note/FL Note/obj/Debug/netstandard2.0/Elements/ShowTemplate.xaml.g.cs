@@ -8,12 +8,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("FL_Note.ShowTemplate.xaml", "ShowTemplate.xaml", typeof(global::FL_Note.ShowTemplate))]
+[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("FL_Note.Elements.ShowTemplate.xaml", "Elements/ShowTemplate.xaml", typeof(global::FL_Note.Elements.ShowTemplate))]
 
-namespace FL_Note {
+namespace FL_Note.Elements {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("ShowTemplate.xaml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Elements\\ShowTemplate.xaml")]
     public partial class ShowTemplate : global::Xamarin.Forms.StackLayout {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]

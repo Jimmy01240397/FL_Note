@@ -2,22 +2,23 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:FL_Note"
-             xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
-             x:Class="FL_Note.SettingTemplate"
+             xmlns:elements="clr-namespace:FL_Note.Elements"
+             xmlns:extensions="clr-namespace:FL_Note.Extensions"
+             x:Class="FL_Note.SubPages.SettingTemplate"
              NavigationPage.HasBackButton="False">
     <NavigationPage.TitleView>
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
-            <ImageButton BackgroundColor="White" Source="{local:ImageResource Images.back.png}" Aspect="AspectFit" HorizontalOptions="Start" VerticalOptions="FillAndExpand" WidthRequest="80" Clicked="BackButton_Clicked"/>
+            <ImageButton BackgroundColor="White" Source="{extensions:ImageResource Images.back.png}" Aspect="AspectFit" HorizontalOptions="Start" VerticalOptions="FillAndExpand" WidthRequest="80" Clicked="BackButton_Clicked"/>
         </StackLayout>
     </NavigationPage.TitleView>
 
-    <local:MyTabbedPage BarBackgroundColor="White" SelectedTabColor="Blue" UnselectedTabColor="Black" IsSwipeEnabled="False">
-        <local:MyTabbedPage.barTabText>
+    <elements:MyTabbedPage BarBackgroundColor="White" SelectedTabColor="Blue" UnselectedTabColor="Black" IsSwipeEnabled="False">
+        <elements:MyTabbedPage.barTabText>
             <x:String>魔術圖</x:String>
             <x:String>背景圖</x:String>
             <x:String>設定</x:String>
-        </local:MyTabbedPage.barTabText>
-        <local:MyTabbedPage.view>
+        </elements:MyTabbedPage.barTabText>
+        <elements:MyTabbedPage.view>
             <StackLayout>
                 <Grid RowSpacing="0" ColumnSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <Grid.RowDefinitions>
@@ -30,15 +31,14 @@
                     </Frame>
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="60"/>
                             <ColumnDefinition/>
+                            <ColumnDefinition Width="20"/>
                             <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="60"/>
                         </Grid.ColumnDefinitions>
-                        <ImageButton Grid.Column="1" BackgroundColor="#95B1FA" Source="{local:ImageResource Images.edit2.png}"/>
-                        <ImageButton Grid.Column="2" BackgroundColor="#95B1FA" Source="{local:ImageResource Images.edit2.png}"/>
-                        <ImageButton Grid.Column="3" BackgroundColor="#95B1FA" Source="{local:ImageResource Images.edit2.png}"/>
+                        <ImageButton Grid.Column="1" BackgroundColor="#95B1FA" Source="{extensions:ImageResource Images.edit2.png}" Clicked="EditButton_Clicked"/>
+                        <ImageButton Grid.Column="3" BackgroundColor="#95B1FA" Source="{extensions:ImageResource Images.picture.png}" Clicked="PictureButton_Clicked"/>
                     </Grid>
                 </Grid>
             </StackLayout>
@@ -52,6 +52,6 @@
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
             </StackLayout>
-        </local:MyTabbedPage.view>
-    </local:MyTabbedPage>
+        </elements:MyTabbedPage.view>
+    </elements:MyTabbedPage>
 </ContentPage>

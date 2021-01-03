@@ -8,12 +8,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("FL_Note.SettingTemplate.xaml", "SettingTemplate.xaml", typeof(global::FL_Note.SettingTemplate))]
+[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("FL_Note.SubPages.SettingTemplate.xaml", "SubPages/SettingTemplate.xaml", typeof(global::FL_Note.SubPages.SettingTemplate))]
 
-namespace FL_Note {
+namespace FL_Note.SubPages {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("SettingTemplate.xaml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("SubPages\\SettingTemplate.xaml")]
     public partial class SettingTemplate : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:FL_Note"
+             xmlns:elements="clr-namespace:FL_Note.Elements"
+             xmlns:extensions="clr-namespace:FL_Note.Extensions"
+             xmlns:tt="clr-namespace:TouchTracking.Forms;assembly=TouchTracking.Forms"
+             xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+             x:Class="FL_Note.Elements.DrawLayout">
+    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <skia:SKCanvasView x:Name="backView" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" PaintSurface="OnBackViewPaintSurface" />
+
+            <skia:SKCanvasView x:Name="canvasView" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" PaintSurface="OnCanvasViewPaintSurface" />
+            <Grid.Effects>
+                <tt:TouchEffect Capture="True"
+                        TouchAction="OnTouchEffectAction" />
+            </Grid.Effects>
+        </Grid>
+        <elements:MyImageButton 
+                    x:Name="ChooseColorButton"
+                    Source="{extensions:ImageResource Images.colorpalette.png}"
+                    BorderColor="White"
+                    BackgroundColor="Black"
+                    CornerRadius="100"
+                    ButtonHeight="45"
+                    ButtonWidth="45"
+                    ImageHeight="20"
+                    ImageWidth="20"
+                    TranslationX="-30"
+                    TranslationY="-20"
+                    HorizontalOptions="End"
+                    VerticalOptions="End"
+                    Clicked="OnChooseColorClicked"/>
+    </Grid>
+</StackLayout>

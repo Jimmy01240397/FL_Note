@@ -19,6 +19,7 @@
     <None Remove="edit.png" />
     <None Remove="Images\back.png" />
     <None Remove="Images\edit2.png" />
+    <None Remove="Images\picture.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +29,7 @@
     <EmbeddedResource Include="Images\delete.png" />
     <EmbeddedResource Include="Images\edit.png" />
     <EmbeddedResource Include="Images\edit2.png" />
+    <EmbeddedResource Include="Images\picture.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,13 +44,22 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="MyTabbedPage.xaml">
+    <EmbeddedResource Update="Elements\ChooseColorLayout.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="SettingTemplate.xaml">
+    <EmbeddedResource Update="Elements\DrawLayout.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="ShowTemplate.xaml">
+    <EmbeddedResource Update="SubPages\EditPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Elements\MyTabbedPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="SubPages\SettingTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Elements\ShowTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

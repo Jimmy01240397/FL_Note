@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FL_Note.Elements;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace FL_Note
+namespace FL_Note.SubPages
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class SettingTemplate : ContentPage
@@ -44,13 +45,19 @@ namespace FL_Note
 
         private void BackButton_Clicked(object sender, EventArgs e)
         {
-            //this.ScaleTo(0);
             Navigation.PopAsync();
             MyTabbedPage tabbedPage = mainPage.FindByName<MyTabbedPage>("controler");
             tabbedPage.IsVisible = true;
-            //tabbedPage.FindByName<CarouselView>("carouselView").ScaleTo(0);
-            //tabbedPage.FindByName<CarouselView>("carouselView").ScaleTo(1);
-            //tabbedPage.FindByName<CarouselView>("carouselView").ItemsSource = tabbedPage.view.ToArray();
+        }
+
+        private void EditButton_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new EditPage());
+        }
+
+        private void PictureButton_Clicked(object sender, EventArgs e)
+        {
+
         }
     }
 }

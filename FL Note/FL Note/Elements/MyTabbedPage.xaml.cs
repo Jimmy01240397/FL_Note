@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace FL_Note
+namespace FL_Note.Elements
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class MyTabbedPage : ContentView

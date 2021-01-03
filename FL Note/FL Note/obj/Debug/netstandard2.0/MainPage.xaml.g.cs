@@ -20,25 +20,16 @@ namespace FL_Note {
         private global::Xamarin.Forms.Grid Drawing;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::SkiaSharp.Views.Forms.SKCanvasView backView;
+        private global::FL_Note.Elements.DrawLayout drawlayout;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::SkiaSharp.Views.Forms.SKCanvasView canvasView;
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::FL_Note.GradientLayout controlbutton;
+        private global::FL_Note.Elements.GradientLayout controlbutton;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private global::Xamarin.Forms.Button clear;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Grid choosecolor;
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::FL_Note.MyImageButton ChooseColorButton;
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::FL_Note.MyTabbedPage controler;
+        private global::FL_Note.Elements.MyTabbedPage controler;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private global::Xamarin.Forms.StackLayout ShowPages;
@@ -50,13 +41,10 @@ namespace FL_Note {
         private void InitializeComponent() {
             global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(MainPage));
             Drawing = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Grid>(this, "Drawing");
-            backView = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::SkiaSharp.Views.Forms.SKCanvasView>(this, "backView");
-            canvasView = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::SkiaSharp.Views.Forms.SKCanvasView>(this, "canvasView");
-            controlbutton = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::FL_Note.GradientLayout>(this, "controlbutton");
+            drawlayout = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::FL_Note.Elements.DrawLayout>(this, "drawlayout");
+            controlbutton = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::FL_Note.Elements.GradientLayout>(this, "controlbutton");
             clear = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Button>(this, "clear");
-            choosecolor = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Grid>(this, "choosecolor");
-            ChooseColorButton = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::FL_Note.MyImageButton>(this, "ChooseColorButton");
-            controler = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::FL_Note.MyTabbedPage>(this, "controler");
+            controler = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::FL_Note.Elements.MyTabbedPage>(this, "controler");
             ShowPages = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.StackLayout>(this, "ShowPages");
             BackToDraw = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.StackLayout>(this, "BackToDraw");
         }
