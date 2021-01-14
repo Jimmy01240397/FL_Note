@@ -1,6 +1,7 @@
 ﻿using FL_Note.Elements;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,7 +28,32 @@ namespace FL_Note.SubPages
                 {
                     WorkingImage.WidthRequest = 250;
                     WorkingImage.HeightRequest = (WorkingImage.WidthRequest + 40) * ((_mainPage.Bounds.Height - 50) / _mainPage.Bounds.Width) - 40;
+
+                    object[] backGrounds = ((object[])_mainPage.data["backgroundimage"]);
+                    for(int i = 0; i < (backGrounds.Length - 1) / 2 + 1; i++)
+                    {
+                        ImageButton imageButton = new ImageButton()
+                        {
+                            HorizontalOptions = LayoutOptions.Start
+                        };
+                    }
                 }
+            }
+        }
+
+        ShowTemplate _showTemplate;
+        public ShowTemplate showTemplate
+        {
+            get
+            {
+                return _showTemplate;
+            }
+            set
+            {
+                _showTemplate = value;
+
+                ((Image)((Grid)WorkingImage.Content).Children[0]).Source = ShowTemplate.CopyImageSource(value.BackgroundImage);
+                ((Image)((Grid)WorkingImage.Content).Children[1]).Source = ShowTemplate.CopyImageSource(value.Image);                
             }
         }
 
@@ -52,7 +78,9 @@ namespace FL_Note.SubPages
 
         private void EditButton_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new EditPage());
+            EditPage editPage = new EditPage();
+            editPage.showTemplate = showTemplate;
+            Navigation.PushAsync(editPage);
         }
 
         private void PictureButton_Clicked(object sender, EventArgs e)

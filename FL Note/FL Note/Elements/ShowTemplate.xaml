@@ -25,7 +25,7 @@
                         <ColumnDefinition Width="50"/>
                         <ColumnDefinition Width="50" />
                     </Grid.ColumnDefinitions>
-                    <RadioButton Text="test" GroupName="UsingPage"/>
+                    <RadioButton x:Name="LabelRadio" Text="test" GroupName="UsingPage"/>
                     <ImageButton Grid.Column="1" BackgroundColor="White" Source="{extensions:ImageResource Images.edit.png}" Clicked="EditButton_Clicked"/>
                     <ImageButton Grid.Column="2" BackgroundColor="White" Source="{extensions:ImageResource Images.delete.png}"/>
                 </Grid>
@@ -43,7 +43,10 @@
                         </Grid.RowDefinitions>
                         <Label Text="魔術圖：" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                         <Frame x:Name="MagicImage" Grid.Row="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="78" HeightRequest="180" BorderColor="Black">
-                            <Image Margin="-15" BackgroundColor="#FFF8F8"/>
+                            <Grid Margin="-15" RowSpacing="0" ColumnSpacing="0">
+                                <Image BackgroundColor="Transparent"/>
+                                <Image BackgroundColor="Transparent"/>
+                            </Grid>
                         </Frame>
                     </Grid>
                     <Grid Grid.Column="1" RowSpacing="0" ColumnSpacing="0">
@@ -53,7 +56,7 @@
                         </Grid.RowDefinitions>
                         <Label Text="背景圖：" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                         <Frame x:Name="BackGroundImage" Grid.Row="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="78" HeightRequest="180" BorderColor="Black">
-                            <Image Margin="-15" BackgroundColor="#FFF8F8"/>
+                            <Image Margin="-15" BackgroundColor="Transparent"/>
                         </Frame>
                     </Grid>
                     <Grid Grid.Column="2" RowSpacing="0" ColumnSpacing="0">
@@ -69,14 +72,14 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <Label Text="觀眾圖片：" Grid.Row="0" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
-                        <Label Text="左上縮圖" Grid.Row="1" TextColor="Blue" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label x:Name="showimage" Text="左上縮圖" Grid.Row="1" TextColor="Blue" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
                         <Label Text="截圖時機：" Grid.Row="2" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
-                        <Label Text="面朝下" Grid.Row="3" TextColor="Blue" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label x:Name="screenshottime" Text="面朝下" Grid.Row="3" TextColor="Blue" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
                         <Label Text="儲存截圖：" Grid.Row="4" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
-                        <Label Text="否" Grid.Row="5" TextColor="Blue" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label x:Name="savescreenshot" Text="否" Grid.Row="5" TextColor="Blue" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
                         <Label Text="觸發方法：" Grid.Row="6" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
-                        <Label Text="3指" Grid.Row="7" TextColor="Blue" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
-                        <Label Text="震動：關" Grid.Row="8" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label x:Name="lookway" Text="3指" Grid.Row="7" TextColor="Blue" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label x:Name="shock" Text="震動：關" Grid.Row="8" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
                     </Grid>
                 </Grid>
             </Grid>

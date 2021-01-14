@@ -23,22 +23,32 @@
                     <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
 
-                <elements:DrawLayout x:Name="drawing" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                <elements:DrawLayout x:Name="drawing" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" EndDraw="Drawing_EndDraw"/>
 
-                <elements:GradientLayout x:Name="controlbutton" Grid.Row="1" ColorsList="Blue,White,Blue" Mode="ToRight">
+                <StackLayout x:Name="controlbutton" Grid.Row="1" BackgroundColor="#7A9CF6">
                     <Grid RowSpacing="0" ColumnSpacing="0">
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
                             <ColumnDefinition />
-                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="100"/>
                             <ColumnDefinition />
+                            <ColumnDefinition Width="100"/>
                         </Grid.ColumnDefinitions>
 
-                        <Button Grid.Column="1"
-                            x:Name="clear"
-                            Text="clear" 
-                            Clicked="OnClearClicked"/>
+                        <Button Grid.Column="0"
+                                x:Name="clear"
+                                Text="清除" 
+                                Clicked="OnClearClicked"/>
+                        <Button Grid.Column="2"
+                                x:Name="restore"
+                                Text="上一步" 
+                                Clicked="OnRestoreClicked"/>
+                        <Button Grid.Column="4"
+                                x:Name="save"
+                                Text="儲存" 
+                                Clicked="OnSaveClicked"/>
                     </Grid>
-                </elements:GradientLayout>
+                </StackLayout>
             </Grid>
         </Grid>
     </ContentPage.Content>
