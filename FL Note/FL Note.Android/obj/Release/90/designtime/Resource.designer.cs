@@ -12525,7 +12525,10 @@ namespace FL_Note.Droid
 			public const int icon_round = 2130903043;
 			
 			// aapt resource value: 0x7F030004
-			public const int launcher_foreground = 2130903044;
+			public const int ic_launcher = 2130903044;
+			
+			// aapt resource value: 0x7F030005
+			public const int launcher_foreground = 2130903045;
 			
 			static Mipmap()
 			{

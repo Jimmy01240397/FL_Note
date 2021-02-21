@@ -23,13 +23,26 @@ namespace FL_Note.Elements
             BackGround
         }
 
-        Dictionary<long, SKPath> inProgressPaths = new Dictionary<long, SKPath>();
+        public Dictionary<long, SKPath> inProgressPaths { get; private set; } = new Dictionary<long, SKPath>();
         List<SKPath> completedPaths = new List<SKPath>();
-        public SKImage ViewImage { get; set; } = null;
+        public SKImage viewImage = null;
+        public SKImage ViewImage
+        {
+            get
+            {
+                return viewImage;
+            }
+            set
+            {
+                viewImage = value;
+                newimage = true;
+            }
+        }
         public SKImage BackImage { get; set; } = null;
         List<SKImage> imagebefores = new List<SKImage>();
-        bool init = false;
+        bool newimage = false;
 
+        public event TouchActionEventHandler TouchAction;
 
         ChooseColorLayout chooseColorLayout = new ChooseColorLayout()
         {
@@ -65,6 +78,7 @@ namespace FL_Note.Elements
 
         void OnTouchEffectAction(object sender, TouchActionEventArgs args)
         {
+            TouchAction?.Invoke(sender, args);
             switch (args.Type)
             {
                 case TouchActionType.Pressed:
@@ -91,16 +105,16 @@ namespace FL_Note.Elements
                     {
                         completedPaths.Add(inProgressPaths[args.Id]);
                         inProgressPaths.Remove(args.Id);
-                        canvasView.InvalidateSurface();
                     }
+                    canvasView.InvalidateSurface();
                     break;
 
                 case TouchActionType.Cancelled:
                     if (inProgressPaths.ContainsKey(args.Id))
                     {
                         inProgressPaths.Remove(args.Id);
-                        canvasView.InvalidateSurface();
                     }
+                    canvasView.InvalidateSurface();
                     break;
             }
         }
@@ -140,43 +154,45 @@ namespace FL_Note.Elements
 
             if (inProgressPaths.Count == 0)
             {
-                if (ViewImage == null)
+                if (viewImage == null)
                 {
                     canvas.Clear();
                     if (CanRestore)
                     {
-                        ViewImage = imagebefores[imagebefores.Count - 1];
+                        viewImage = imagebefores[imagebefores.Count - 1];
                         imagebefores.RemoveAt(imagebefores.Count - 1);
                     }
                     else
                     {
-                        ViewImage = args.Surface.Snapshot();
-                        init = true;
+                        viewImage = args.Surface.Snapshot();
                     }
                 }
                 else
                 {
-                    if(init)
+                    if(newimage)
                     {
-                        imagebefores.Add(ViewImage);
-                        ViewImage = args.Surface.Snapshot();
+                        newimage = false;
                     }
                     else
                     {
-                        init = true;
+                        if (completedPaths.Count > 0)
+                        {
+                            imagebefores.Add(viewImage);
+                            viewImage = args.Surface.Snapshot();
+                        }
                     }
                 }
                 completedPaths.Clear();
                 canvas.Clear();
 
-                canvas.DrawImage(ViewImage, new SKPoint(0, 0));
+                canvas.DrawImage(viewImage, new SKPoint(0, 0));
 
                 EndDraw?.Invoke(sender, args);
             }
             else
             {
                 canvas.Clear();
-                canvas.DrawImage(ViewImage, new SKPoint(0, 0));
+                canvas.DrawImage(viewImage, new SKPoint(0, 0));
 
                 foreach (SKPath path in completedPaths)
                 {
@@ -237,7 +253,7 @@ namespace FL_Note.Elements
             completedPaths.Clear();
             inProgressPaths.Clear();
             imagebefores.Clear();
-            ViewImage = null;
+            viewImage = null;
             canvasView.InvalidateSurface();
         }
 
@@ -245,23 +261,27 @@ namespace FL_Note.Elements
         {
             if (CanRestore && inProgressPaths.Count == 0 && completedPaths.Count == 0)
             {
-                ViewImage = null;
+                viewImage = null;
                 canvasView.InvalidateSurface();
             }
+        }
+
+        public void InvalidateSurface()
+        {
+            canvasView.InvalidateSurface();
         }
 
         public byte[] GetImageByte(SKEncodedImageFormat imageFormat, ChooseImage chooseImage)
         {
             byte[] data = null;
             using (MemoryStream memStream = new MemoryStream())
-            using (SKManagedWStream wstream = new SKManagedWStream(memStream))
             {
                 SKImage sKImage = null;
                 switch (chooseImage)
                 {
                     case ChooseImage.View:
                         {
-                            sKImage = ViewImage;
+                            sKImage = viewImage;
                         }
                         break;
                     case ChooseImage.BackGround:

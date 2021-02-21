@@ -1565,9 +1565,10 @@ int layout shellcontent 0x7f040051
 int layout support_simple_spinner_dropdown_item 0x7f040052
 int layout tabbar 0x7f040053
 int layout toolbar 0x7f040054
-int mipmap icon 0x7f030000
-int mipmap icon_round 0x7f030001
-int mipmap launcher_foreground 0x7f030002
+int mipmap ic_launcher 0x7f030000
+int mipmap icon 0x7f030001
+int mipmap icon_round 0x7f030002
+int mipmap launcher_foreground 0x7f030003
 int string abc_action_bar_home_description 0x7f0c0018
 int string abc_action_bar_up_description 0x7f0c0019
 int string abc_action_menu_overflow_description 0x7f0c001a

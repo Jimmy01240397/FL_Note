@@ -8,7 +8,6 @@ C:\Users\user\Desktop\FL Note\FL Note\FL Note\obj\Debug\netstandard2.0\FL Note.A
 C:\Users\user\Desktop\FL Note\FL Note\FL Note\obj\Debug\netstandard2.0\FL Note.AssemblyInfo.cs
 C:\Users\user\Desktop\FL Note\FL Note\FL Note\obj\Debug\netstandard2.0\FL_Note.dll
 C:\Users\user\Desktop\FL Note\FL Note\FL Note\obj\Debug\netstandard2.0\FL_Note.pdb
-C:\Users\user\Desktop\FL Note\FL Note\FL Note\obj\Debug\netstandard2.0\XamlC.stamp
 C:\Users\user\Desktop\FL Note\FL Note\FL Note\obj\Debug\netstandard2.0\FL Note.csprojAssemblyReference.cache
 C:\Users\jimmy\Desktop\FL Note\FL Note\FL Note\obj\Debug\netstandard2.0\FL Note.csprojAssemblyReference.cache
 C:\Users\jimmy\Desktop\FL Note\FL Note\FL Note\obj\Debug\netstandard2.0\App.xaml.g.cs
@@ -36,3 +35,5 @@ C:\Users\user\Desktop\FL Note\FL Note\FL Note\obj\Debug\netstandard2.0\SubPages\
 C:\Users\user\Desktop\FL Note\FL Note\FL Note\obj\Debug\netstandard2.0\SubPages\SettingTemplate.xaml.g.cs
 C:\Users\user\Desktop\FL Note\FL Note\FL Note\bin\Debug\netstandard2.0\UnityNetwork.dll
 C:\Users\user\Desktop\FL Note\FL Note\FL Note\obj\Debug\netstandard2.0\FL Note.csproj.CopyComplete
+C:\Users\user\Desktop\FL Note\FL Note\FL Note\obj\Debug\netstandard2.0\Elements\SwitchButton.xaml.g.cs
+C:\Users\user\Desktop\FL Note\FL Note\FL Note\obj\Debug\netstandard2.0\XamlC.stamp

@@ -129,7 +129,7 @@ namespace FL_Note.Elements
             }
             set
             {
-                savescreenshot.Text = "震動：" + (value ? "開" : "關");
+                shock.Text = "震動：" + (value ? "開" : "關");
             }
         }
 
@@ -180,11 +180,16 @@ namespace FL_Note.Elements
 
         private void EditButton_Clicked(object sender, EventArgs e)
         {
-            (mainPage.FindByName<MyTabbedPage>("controler")).IsVisible = false;
+            (mainPage.FindByName<Grid>("controler")).IsVisible = false;
             SettingTemplate settingTemplate = new SettingTemplate();
             settingTemplate.mainPage = mainPage;
             settingTemplate.showTemplate = this;
             Navigation.PushAsync(settingTemplate);
+        }
+        private void DeleteButton_Clicked(object sender, EventArgs e)
+        {
+            mainPage.DeleteShow = this;
+            (mainPage.FindByName<Grid>("OnDelete")).IsVisible = true;
         }
     }
 }

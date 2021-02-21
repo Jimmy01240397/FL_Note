@@ -18,19 +18,19 @@ namespace FL_Note.SubPages
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class EditPage : ContentPage
 	{
-        ShowTemplate _showTemplate;
-        public ShowTemplate showTemplate
+        SettingTemplate _settingTemplate;
+        public SettingTemplate settingTemplate
         {
             get
             {
-                return _showTemplate;
+                return _settingTemplate;
             }
             set
             {
-                _showTemplate = value;
+                _settingTemplate = value;
 
                 drawing.ViewImage = SKImage.FromEncodedData(ShowTemplate.ImageSourceToBytes(value.Image));
-                drawing.BackImage = SKImage.FromEncodedData(ShowTemplate.ImageSourceToBytes(value.BackgroundImage));
+                drawing.BackImage = SKImage.FromEncodedData(ShowTemplate.ImageSourceToBytes(value.BackImage));
             }
         }
 
@@ -56,7 +56,9 @@ namespace FL_Note.SubPages
 
         private void OnSaveClicked(object sender, EventArgs e)
         {
-            drawing.Save(SKEncodedImageFormat.Png, Elements.DrawLayout.ChooseImage.View, "FL-Note", Guid.NewGuid().ToString() + ".png");
+            Stream stream = new MemoryStream(drawing.GetImageByte(SKEncodedImageFormat.Png, DrawLayout.ChooseImage.View));
+            settingTemplate.Image = ImageSource.FromStream(() => stream);
+            //drawing.Save(SKEncodedImageFormat.Png, Elements.DrawLayout.ChooseImage.View, "FL-Note", Guid.NewGuid().ToString() + ".png");
         }
 
         private void Drawing_EndDraw(object sender, EventArgs e)

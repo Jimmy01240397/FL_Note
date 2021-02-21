@@ -8,12 +8,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("FL_Note.MyTabbedPage.xaml", "MyTabbedPage.xaml", typeof(global::FL_Note.MyTabbedPage))]
+[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("FL_Note.Elements.MyTabbedPage.xaml", "Elements/MyTabbedPage.xaml", typeof(global::FL_Note.Elements.MyTabbedPage))]
 
-namespace FL_Note {
+namespace FL_Note.Elements {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("MyTabbedPage.xaml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Elements\\MyTabbedPage.xaml")]
     public partial class MyTabbedPage : global::Xamarin.Forms.ContentView {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]

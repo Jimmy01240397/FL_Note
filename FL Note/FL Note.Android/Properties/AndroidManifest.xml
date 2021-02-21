@@ -3,5 +3,6 @@
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="27" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-	<application android:label="FL_Note.Android" android:icon="@mipmap/icon"></application>
+	<uses-permission android:name="android.permission.VIBRATE" />
+	<application android:label="FL_Note.Android" android:icon="@mipmap/ic_launcher"></application>
 </manifest>

@@ -12,7 +12,7 @@
         </StackLayout>
     </NavigationPage.TitleView>
 
-    <elements:MyTabbedPage BarBackgroundColor="White" SelectedTabColor="Blue" UnselectedTabColor="Black" IsSwipeEnabled="False">
+    <elements:MyTabbedPage BarBackgroundColor="White" SelectedTabColor="Blue" UnselectedTabColor="Black" IsSwipeEnabled="True">
         <elements:MyTabbedPage.barTabText>
             <x:String>魔術圖</x:String>
             <x:String>背景圖</x:String>
@@ -46,13 +46,110 @@
                 </Grid>
             </StackLayout>
             <ScrollView>
-                <StackLayout x:Name="BackGroundChoose" BackgroundColor="#F0F0F0">
+                <StackLayout BackgroundColor="#F0F0F0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="20"/>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Column="1" x:Name="BackGroundChoose">
+                            
+                        </StackLayout>
+                    </Grid>
                 </StackLayout>
             </ScrollView>
-            <StackLayout BackgroundColor="Blue">
-                <Label Text="Welcome to Xamarin.Forms2.3!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <StackLayout>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="20"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Column="1" Grid.Row="1">
+                        <Grid RowSpacing="0" ColumnSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="Start" HeightRequest="75">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="2*"/>
+                            </Grid.RowDefinitions>
+                            <Label Text="表演標題：" Grid.Row="0"/>
+                            <Entry x:Name="name" Grid.Row="1" Text=""/>
+                        </Grid>
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="觀眾圖片：" HorizontalOptions="Start" VerticalOptions="Center"/>
+                            <elements:SwitchButton x:Name="showimage" Grid.Column="1" SelectedColor="Blue" UnSelectedColor="#F0F0F0" SelectedTextColor="White" UnSelectedTextColor="Black" SelectedIndex="0">
+                                <elements:SwitchButton.Item>
+                                    <x:String>左上縮圖</x:String>
+                                    <x:String>右下縮圖</x:String>
+                                    <x:String>全螢幕</x:String>
+                                </elements:SwitchButton.Item>
+                            </elements:SwitchButton>
+                        </Grid>
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="截圖時機：" HorizontalOptions="Start" VerticalOptions="Center"/>
+                            <elements:SwitchButton x:Name="screenshottime" Grid.Column="1" SelectedColor="Blue" UnSelectedColor="#F0F0F0" SelectedTextColor="White" UnSelectedTextColor="Black" SelectedIndex="0">
+                                <elements:SwitchButton.Item>
+                                    <x:String>面朝下</x:String>
+                                    <x:String>清除按鈕</x:String>
+                                </elements:SwitchButton.Item>
+                            </elements:SwitchButton>
+                        </Grid>
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="1.5*"/>
+                                <ColumnDefinition Width="1.5*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="儲存截圖：" HorizontalOptions="Start" VerticalOptions="Center"/>
+                            <elements:SwitchButton x:Name="savescreenshot" Grid.Column="1" SelectedColor="Red" UnSelectedColor="#F0F0F0" SelectedTextColor="White" UnSelectedTextColor="Black" SelectedIndex="0">
+                                <elements:SwitchButton.Item>
+                                    <x:String>否</x:String>
+                                    <x:String>是</x:String>
+                                </elements:SwitchButton.Item>
+                            </elements:SwitchButton>
+                        </Grid>
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="1.5*"/>
+                                <ColumnDefinition Width="1.5*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="震動：" HorizontalOptions="Start" VerticalOptions="Center"/>
+                            <elements:SwitchButton x:Name="shock" Grid.Column="1" SelectedColor="Red" UnSelectedColor="#F0F0F0" SelectedTextColor="White" UnSelectedTextColor="Black" SelectedIndex="0">
+                                <elements:SwitchButton.Item>
+                                    <x:String>關</x:String>
+                                    <x:String>開</x:String>
+                                </elements:SwitchButton.Item>
+                            </elements:SwitchButton>
+                        </Grid>
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="觸發方法：" HorizontalOptions="Start" VerticalOptions="Center"/>
+                            <elements:SwitchButton x:Name="lookway" Grid.Column="1" SelectedColor="Blue" UnSelectedColor="#F0F0F0" SelectedTextColor="White" UnSelectedTextColor="Black" SelectedIndex="0">
+                                <elements:SwitchButton.Item>
+                                    <x:String>3指</x:String>
+                                    <x:String>長按</x:String>
+                                    <x:String>磁力</x:String>
+                                </elements:SwitchButton.Item>
+                            </elements:SwitchButton>
+                        </Grid>
+                    </StackLayout>
+                </Grid>
             </StackLayout>
         </elements:MyTabbedPage.view>
     </elements:MyTabbedPage>

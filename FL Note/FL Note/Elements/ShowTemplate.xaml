@@ -27,7 +27,7 @@
                     </Grid.ColumnDefinitions>
                     <RadioButton x:Name="LabelRadio" Text="test" GroupName="UsingPage"/>
                     <ImageButton Grid.Column="1" BackgroundColor="White" Source="{extensions:ImageResource Images.edit.png}" Clicked="EditButton_Clicked"/>
-                    <ImageButton Grid.Column="2" BackgroundColor="White" Source="{extensions:ImageResource Images.delete.png}"/>
+                    <ImageButton x:Name="DeleteButton" Grid.Column="2" BackgroundColor="White" Source="{extensions:ImageResource Images.delete.png}" Clicked="DeleteButton_Clicked"/>
                 </Grid>
                 <BoxView Grid.Row="1" Grid.Column="1" BackgroundColor="Gray" HeightRequest="1" VerticalOptions="End"  HorizontalOptions="FillAndExpand"/>
                 <Grid Grid.Row="2" Grid.Column="1" RowSpacing="0" ColumnSpacing="0">

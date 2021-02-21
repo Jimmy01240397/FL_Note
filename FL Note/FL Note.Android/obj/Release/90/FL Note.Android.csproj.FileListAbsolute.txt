@@ -59,6 +59,8 @@ C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\bin\Release\System.Web.Ser
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\bin\Release\Mono.Security.pdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\bin\Release\FL_Note.Android.dll.mdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\bin\Release\Xamarin.Essentials.pdb
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\bin\Release\UnityNetwork.dll
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\bin\Release\System.Numerics.Vectors.pdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Release\90\linksrc\FL_Note.pdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Release\90\linksrc\FormsViewGroup.pdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Release\90\linksrc\Mono.Android.pdb
@@ -81,6 +83,7 @@ C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Release\90\linksrc\Sys
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Release\90\linksrc\System.Runtime.Serialization.pdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Release\90\linksrc\System.ServiceModel.Internals.pdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Release\90\linksrc\System.Web.Services.pdb
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Release\90\linksrc\System.Numerics.Vectors.pdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Release\90\linksrc\Mono.Security.pdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Release\90\linksrc\FL_Note.Android.dll.mdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Release\90\android\assets\FL_Note.Android.dll.mdb
@@ -96,6 +99,7 @@ C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Release\90\android\ass
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Release\90\android\assets\System.IO.Compression.pdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Release\90\android\assets\System.Net.Http.pdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Release\90\android\assets\System.Numerics.pdb
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Release\90\android\assets\System.Numerics.Vectors.pdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Release\90\android\assets\System.pdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Release\90\android\assets\System.Runtime.Serialization.pdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Release\90\android\assets\System.ServiceModel.Internals.pdb
@@ -107,5 +111,10 @@ C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Release\90\android\ass
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Release\90\android\assets\Xamarin.Forms.Core.pdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Release\90\android\assets\Xamarin.Forms.Platform.Android.pdb
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Release\90\android\assets\Xamarin.Forms.Xaml.pdb
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Release\90\res\mipmap-xxxhdpi\ic_launcher.png
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Release\90\res\mipmap-xxhdpi\ic_launcher.png
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Release\90\res\mipmap-xhdpi\ic_launcher.png
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Release\90\res\mipmap-hdpi\ic_launcher.png
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Release\90\res\mipmap-mdpi\ic_launcher.png
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\bin\Release\FL_Note.Android.dll
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Release\90\linksrc\FL_Note.Android.dll.mdb

@@ -3,9 +3,10 @@
   <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="27" />
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.VIBRATE" />
   <uses-permission android:name="android.permission.INTERNET" />
-  <application android:label="FL_Note.Android" android:icon="@mipmap/icon" android:debuggable="true" android:name="android.app.Application" android:allowBackup="true">
-    <activity android:configChanges="orientation|screenSize" android:icon="@mipmap/icon" android:label="FL Note" android:screenOrientation="portrait" android:theme="@style/MainTheme" android:name="md5ccb07af70f34560ca161162b9ccc857c.MainActivity">
+  <application android:label="FL_Note.Android" android:icon="@mipmap/ic_launcher" android:debuggable="true" android:name="android.app.Application" android:allowBackup="true">
+    <activity android:configChanges="orientation|screenSize" android:icon="@mipmap/ic_launcher" android:label="FL Note" android:screenOrientation="portrait" android:theme="@style/MainTheme" android:name="md5ccb07af70f34560ca161162b9ccc857c.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />

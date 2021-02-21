@@ -8,21 +8,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("FL_Note.SettingTemplate.xaml", "SettingTemplate.xaml", typeof(global::FL_Note.SettingTemplate))]
+[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("FL_Note.Elements.SwitchButton.xaml", "Elements/SwitchButton.xaml", typeof(global::FL_Note.Elements.SwitchButton))]
 
-namespace FL_Note {
+namespace FL_Note.Elements {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("SettingTemplate.xaml")]
-    public partial class SettingTemplate : global::Xamarin.Forms.ContentPage {
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Elements\\SwitchButton.xaml")]
+    public partial class SwitchButton : global::Xamarin.Forms.ContentView {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Frame WorkingImage;
+        private global::Xamarin.Forms.Grid buttonGrid;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
-            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(SettingTemplate));
-            WorkingImage = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Frame>(this, "WorkingImage");
+            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(SwitchButton));
+            buttonGrid = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Grid>(this, "buttonGrid");
         }
     }
 }
