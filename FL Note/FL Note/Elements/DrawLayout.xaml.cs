@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using FL_Note.Extensions;
+using FL_Note.Interface;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
 using TouchTracking;
@@ -25,7 +26,7 @@ namespace FL_Note.Elements
 
         public Dictionary<long, SKPath> inProgressPaths { get; private set; } = new Dictionary<long, SKPath>();
         List<SKPath> completedPaths = new List<SKPath>();
-        public SKImage viewImage = null;
+        SKImage viewImage = null;
         public SKImage ViewImage
         {
             get
@@ -41,6 +42,44 @@ namespace FL_Note.Elements
         public SKImage BackImage { get; set; } = null;
         List<SKImage> imagebefores = new List<SKImage>();
         bool newimage = false;
+
+        SKSize _allViewSize = new SKSize();
+        public SKSize AllViewSize
+        {
+            get
+            {
+                return _allViewSize;
+            }
+            set
+            {
+                _allViewSize = value;
+                if (ViewSurface == null)
+                {
+                    ViewSurface = SKSurface.Create(new SKImageInfo((int)AllViewSize.Width, (int)AllViewSize.Height));
+                }
+                else
+                {
+                    if (value == new SKSize())
+                    {
+                        SKImage sKImage = ViewSurface.Snapshot();
+                        SKBitmap map1 = SKBitmap.FromImage(sKImage);
+                        ViewSurface = SKSurface.Create(new SKImageInfo((int)AllViewSize.Width, (int)AllViewSize.Height));
+                        ViewSurface.Canvas.DrawBitmap(map1, SKRect.Create(new SKPoint(0, 0), AllViewSize));
+                    }
+                    else
+                    {
+                        SKImage sKImage = ViewSurface.Snapshot();
+                        SKBitmap map1 = SKBitmap.FromImage(sKImage);
+                        ViewSurface = SKSurface.Create(new SKImageInfo((int)canvasView.CanvasSize.Width, (int)canvasView.CanvasSize.Height));
+                        ViewSurface.Canvas.DrawBitmap(map1, SKRect.Create(new SKPoint(0, 0), canvasView.CanvasSize));
+                    }
+                }
+            }
+        }
+
+        SKSurface ViewSurface = null;
+
+        public bool isClear { get; private set; } = true;
 
         public event TouchActionEventHandler TouchAction;
 
@@ -62,6 +101,9 @@ namespace FL_Note.Elements
         };
 
         public event EventHandler EndDraw;
+
+        bool drawinit = false;
+        public event EventHandler DrawInit;
 
         public bool CanRestore
         {
@@ -144,19 +186,33 @@ namespace FL_Note.Elements
             }*/
             if (BackImage != null)
             {
-                canvas.DrawImage(BackImage, new SKPoint(0, 0));
+                canvas.DrawImage(BackImage, SKRect.Create(new SKPoint(0, 0), AllViewSize == new SKSize() ? backView.CanvasSize : AllViewSize));
             }
             BackImage = args.Surface.Snapshot();
         }
         void OnCanvasViewPaintSurface(object sender, SKPaintSurfaceEventArgs args)
         {
+            if(!drawinit)
+            {
+                DrawInit?.Invoke(sender, args);
+                drawinit = true;
+            }
+
             SKCanvas canvas = args.Surface.Canvas;
 
+            if(ViewSurface == null)
+            {
+                ViewSurface = SKSurface.Create(new SKImageInfo((int)canvasView.CanvasSize.Width, (int)canvasView.CanvasSize.Height));
+            }
+
+            SKPixmap viewpix = ViewSurface.PeekPixels();
+            SKPixmap viewpix2 = args.Surface.PeekPixels();
+            canvas.Clear();
             if (inProgressPaths.Count == 0)
             {
                 if (viewImage == null)
                 {
-                    canvas.Clear();
+                    ViewSurface.Canvas.Clear();
                     if (CanRestore)
                     {
                         viewImage = imagebefores[imagebefores.Count - 1];
@@ -164,12 +220,14 @@ namespace FL_Note.Elements
                     }
                     else
                     {
-                        viewImage = args.Surface.Snapshot();
+                        viewImage = ViewSurface.Snapshot();
+                        //viewImage = App.MoveImage(viewImage, new SKPoint(0, (viewpix.Height - viewpix2.Height) / 2));
+                        isClear = true;
                     }
                 }
                 else
                 {
-                    if(newimage)
+                    if (newimage)
                     {
                         newimage = false;
                     }
@@ -178,29 +236,35 @@ namespace FL_Note.Elements
                         if (completedPaths.Count > 0)
                         {
                             imagebefores.Add(viewImage);
-                            viewImage = args.Surface.Snapshot();
+                            viewImage = ViewSurface.Snapshot();
+                            //viewImage = App.MoveImage(viewImage, new SKPoint(0, (viewpix.Height - viewpix2.Height) / 2));
                         }
                     }
+                    isClear = false;
                 }
                 completedPaths.Clear();
-                canvas.Clear();
+                ViewSurface.Canvas.Clear();
 
-                canvas.DrawImage(viewImage, new SKPoint(0, 0));
+                ViewSurface.Canvas.DrawImage(viewImage, SKRect.Create(new SKPoint(0, 0), new SKSize(viewpix.Width, viewpix.Height)));
 
+                canvas.DrawSurface(ViewSurface, new SKPoint(0, 0));
                 EndDraw?.Invoke(sender, args);
             }
             else
             {
-                canvas.Clear();
-                canvas.DrawImage(viewImage, new SKPoint(0, 0));
+                ViewSurface.Canvas.Clear();
+                ViewSurface.Canvas.DrawImage(viewImage, SKRect.Create(new SKPoint(0, 0), new SKSize(viewpix.Width, viewpix.Height)));
+                canvas.DrawSurface(ViewSurface, new SKPoint(0, 0));
 
                 foreach (SKPath path in completedPaths)
                 {
+                    ViewSurface.Canvas.DrawPath(path, paint);
                     canvas.DrawPath(path, paint);
                 }
 
                 foreach (SKPath path in inProgressPaths.Values)
                 {
+                    ViewSurface.Canvas.DrawPath(path, paint);
                     canvas.DrawPath(path, paint);
                 }
             }
@@ -301,7 +365,7 @@ namespace FL_Note.Elements
             byte[] data = GetImageByte(imageFormat, chooseImage);
             if (data != null && data.Length != 0)
             {
-                bool success = await DependencyService.Get<IPhotoLibrary>().
+                bool success = await App.photoLibrary.
                     SavePhotoAsync(data, folder, filename);
             }
         }

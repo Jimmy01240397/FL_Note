@@ -12,7 +12,7 @@
         </StackLayout>
     </NavigationPage.TitleView>
 
-    <elements:MyTabbedPage BarBackgroundColor="White" SelectedTabColor="Blue" UnselectedTabColor="Black" IsSwipeEnabled="True">
+    <elements:MyTabbedPage BarBackgroundColor="White" SelectedTabColor="Blue" UnselectedTabColor="Black" IsSwipeEnabled="False">
         <elements:MyTabbedPage.barTabText>
             <x:String>魔術圖</x:String>
             <x:String>背景圖</x:String>
@@ -84,7 +84,7 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition Width="3*"/>
                             </Grid.ColumnDefinitions>
-                            <Label Text="觀眾圖片：" HorizontalOptions="Start" VerticalOptions="Center"/>
+                            <Label x:Name="showimagetext" Text="觀眾圖片：" HorizontalOptions="Start" VerticalOptions="Center"/>
                             <elements:SwitchButton x:Name="showimage" Grid.Column="1" SelectedColor="Blue" UnSelectedColor="#F0F0F0" SelectedTextColor="White" UnSelectedTextColor="Black" SelectedIndex="0">
                                 <elements:SwitchButton.Item>
                                     <x:String>左上縮圖</x:String>
@@ -148,6 +148,17 @@
                                 </elements:SwitchButton.Item>
                             </elements:SwitchButton>
                         </Grid>
+                        <StackLayout x:Name="magneticLayout" IsVisible="False">
+                            <Label x:Name="magnetic" Text="磁場敏感度(當下數值): 300(41.6)" HorizontalOptions="FillAndExpand" VerticalOptions="Start"/>
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Slider x:Name="magneticSlider" Grid.Column="1" ScaleX="2.5" ScaleY="2.5" MinimumTrackColor="Red" MaximumTrackColor="Gray" Maximum="1000" HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
+                            </Grid>
+                        </StackLayout> 
                     </StackLayout>
                 </Grid>
             </StackLayout>

@@ -29,6 +29,7 @@ namespace FL_Note.SubPages
             {
                 _settingTemplate = value;
 
+                drawing.AllViewSize = new SKSize(value.mainPage.FindByName<DrawLayout>("drawlayout").BackImage.Width, value.mainPage.FindByName<DrawLayout>("drawlayout").BackImage.Height);
                 drawing.ViewImage = SKImage.FromEncodedData(ShowTemplate.ImageSourceToBytes(value.Image));
                 drawing.BackImage = SKImage.FromEncodedData(ShowTemplate.ImageSourceToBytes(value.BackImage));
             }

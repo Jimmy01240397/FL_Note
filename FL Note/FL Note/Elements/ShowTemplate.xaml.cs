@@ -172,10 +172,10 @@ namespace FL_Note.Elements
 
             var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
 
-            MagicImage.WidthRequest = 78;
-            MagicImage.HeightRequest = (MagicImage.WidthRequest + 40) * ((mainPage.Bounds.Height - 50) / mainPage.Bounds.Width) - 40;
-            BackGroundImage.WidthRequest = 78;
-            BackGroundImage.HeightRequest = (BackGroundImage.WidthRequest + 40) * ((mainPage.Bounds.Height - 50) / mainPage.Bounds.Width) - 40; 
+            MagicImage.WidthRequest = mainPage.DrawLayoutSize.X * 0.19;
+            MagicImage.HeightRequest = (MagicImage.WidthRequest + 40) * (mainPage.DrawLayoutSize.Y / mainPage.DrawLayoutSize.X) - 40;
+            BackGroundImage.WidthRequest = mainPage.DrawLayoutSize.X * 0.19;
+            BackGroundImage.HeightRequest = (BackGroundImage.WidthRequest + 40) * (mainPage.DrawLayoutSize.Y / mainPage.DrawLayoutSize.X) - 40; 
         }
 
         private void EditButton_Clicked(object sender, EventArgs e)

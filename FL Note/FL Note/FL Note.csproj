@@ -11,6 +11,11 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Remove="color-palette.png" />
     <None Remove="colorpalette.png" />
@@ -20,6 +25,7 @@
     <None Remove="delete.png" />
     <None Remove="edit.png" />
     <None Remove="Images\back.png" />
+    <None Remove="Images\BackGround\PickBackGround.png" />
     <None Remove="Images\edit2.png" />
     <None Remove="Images\picture.png" />
   </ItemGroup>
@@ -27,6 +33,7 @@
   <ItemGroup>
     <EmbeddedResource Include="data\settingdata.dat" />
     <EmbeddedResource Include="Images\back.png" />
+    <EmbeddedResource Include="Images\BackGround\PickBackGround.png" />
     <EmbeddedResource Include="Images\colorpalette.png" />
     <EmbeddedResource Include="Images\colorpaletteBlack.png" />
     <EmbeddedResource Include="Images\delete.png" />

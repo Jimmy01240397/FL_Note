@@ -15,6 +15,7 @@ using TouchTracking;
 using System.Drawing;
 using Image = Xamarin.Forms.Image;
 using SkiaSharp.Views.Forms;
+using FL_Note.Interface;
 
 namespace FL_Note
 {
@@ -36,6 +37,8 @@ namespace FL_Note
 
         byte[] beforimage = null;
 
+        byte[] FullPageimage = null;
+
         public ShowTemplate DeleteShow { get; set; } = null;
 
         public IList<View> ShowTemplateList
@@ -46,14 +49,30 @@ namespace FL_Note
             }
         }
 
+        public SKSize SizeForImage
+        {
+            get
+            {
+                return new SKSize(drawlayout.FindByName<SKCanvasView>("canvasView").CanvasSize.Width, drawlayout.FindByName<SKCanvasView>("canvasView").CanvasSize.Height);
+            }
+        }
+
+        public Vector2 DrawLayoutSize
+        {
+            get
+            {
+                return new Vector2((float)Bounds.Width, (float)Bounds.Height - 50);
+            }
+        }
 
         public MainPage()
         {
             this.InitializeComponent();
 
             OrientationSensor.ReadingChanged += OrientationSensor_ReadingChanged;
+            Magnetometer.ReadingChanged += Magnetometer_ReadingChanged;
             OrientationSensor.Start(speed);
-
+            Magnetometer.Start(speed);
             var assembly = IntrospectionExtensions.GetTypeInfo(typeof(MainPage)).Assembly;
             byte[] text;
 
@@ -77,53 +96,63 @@ namespace FL_Note
                     break;
                 }
             }
+
         }
 
         void OrientationSensor_ReadingChanged(object sender, OrientationSensorChangedEventArgs e)
         {
-            Vector3 angle = ToEulerAngles(e.Reading.Orientation);
-            if ((angle.X > 175 || angle.X < -175) && (angle.Y < 5 && angle.Y > -5))
+            if (!App.photoLibrary.isApplicationInTheBackground())
             {
-                if (beforimage == null)
+                Vector3 angle = ToEulerAngles(e.Reading.Orientation);
+                if ((angle.X > 175 || angle.X < -175) && (angle.Y < 5 && angle.Y > -5))
                 {
-                    Dictionary<string, object> nowshow = null;
-                    foreach (Dictionary<string, object> show in (object[])data["setdata"])
+                    if (beforimage == null)
                     {
-                        if ((bool)show["enable"])
+                        Dictionary<string, object> nowshow = null;
+                        foreach (Dictionary<string, object> show in (object[])data["setdata"])
                         {
-                            nowshow = show;
-                            break;
-                        }
-                    }
-                    if (!ChangeImageRate.IsRunning && ChangeImageRate.ElapsedMilliseconds == 0)
-                    {
-                        ChangeImageRate.Start();
-                    }
-                    else if (ChangeImageRate.IsRunning && ChangeImageRate.ElapsedMilliseconds > 2000)
-                    {
-                        if ((byte)nowshow["screenshottime"] == (byte)ShowTemplate.ScreenshotTimeEnum.面朝下)
-                        {
-                            beforimage = drawlayout.GetImageByte(SKEncodedImageFormat.Png, DrawLayout.ChooseImage.View);
-                            if ((bool)nowshow["savescreenshot"])
+                            if ((bool)show["enable"])
                             {
-                                SaveImage();
-                            }
-                            if((bool)nowshow["shock"])
-                            {
-                                Vibration.Vibrate();
+                                nowshow = show;
+                                break;
                             }
                         }
-                        if (nowshow["image"] != null)
+                        if (!ChangeImageRate.IsRunning && ChangeImageRate.ElapsedMilliseconds == 0)
                         {
-                            drawlayout.ViewImage = SKImage.FromEncodedData((byte[])nowshow["image"]);
-                            drawlayout.InvalidateSurface();
+                            ChangeImageRate.Start();
                         }
-                        else
+                        else if (ChangeImageRate.IsRunning && ChangeImageRate.ElapsedMilliseconds > 2000)
                         {
-                            drawlayout.Clear();
+                            if ((byte)nowshow["screenshottime"] == (byte)ShowTemplate.ScreenshotTimeEnum.面朝下)
+                            {
+                                beforimage = drawlayout.GetImageByte(SKEncodedImageFormat.Png, DrawLayout.ChooseImage.View);
+                                if ((bool)nowshow["savescreenshot"])
+                                {
+                                    SaveImage();
+                                }
+                                if ((bool)nowshow["shock"])
+                                {
+                                    Vibration.Vibrate();
+                                }
+                            }
+                            if (nowshow["image"] != null)
+                            {
+                                drawlayout.ViewImage = SKImage.FromEncodedData((byte[])nowshow["image"]);
+                                drawlayout.InvalidateSurface();
+                                //drawlayout.Save(SKEncodedImageFormat.Png, DrawLayout.ChooseImage.View, "FL-Note", "test.png");
+                            }
+                            else
+                            {
+                                drawlayout.Clear();
+                            }
+                            ChangeImageRate.Stop();
                         }
-                        ChangeImageRate.Stop();
                     }
+                }
+                else
+                {
+                    ChangeImageRate.Stop();
+                    ChangeImageRate.Reset();
                 }
             }
             else
@@ -131,7 +160,83 @@ namespace FL_Note
                 ChangeImageRate.Stop();
                 ChangeImageRate.Reset();
             }
-            //Console.WriteLine($"Euler: X: {.X}, Y: {ToEulerAngles(data.Orientation).Y}, Z: {ToEulerAngles(data.Orientation).Z}"); //+-180,0,*
+            //Console.WriteLine($"Euler: X: {.X}, Y: {ToEulerAngles(data.Orientation).Y}, Z: {ToEulerAngles(data.Orientation).Z}"); //+-180,0,
+        }
+
+        private void Magnetometer_ReadingChanged(object sender, MagnetometerChangedEventArgs e)
+        {
+            if (beforimage != null)
+            {
+                Dictionary<string, object> nowshow = null;
+                foreach (Dictionary<string, object> show in (object[])data["setdata"])
+                {
+                    if ((bool)show["enable"])
+                    {
+                        nowshow = show;
+                        break;
+                    }
+                }
+
+                if ((byte)nowshow["lookway"] == (byte)ShowTemplate.LookWayEnum.磁力)
+                {
+                    var mdata = e.Reading;
+                    double power = Math.Sqrt(Math.Pow(mdata.MagneticField.X, 2) + Math.Pow(mdata.MagneticField.Y, 2) + Math.Pow(mdata.MagneticField.Z, 2)) / 4;
+                    //Console.WriteLine(power);
+                    Frame ShowImage = (byte)nowshow["showimage"] == (byte)ShowTemplate.ShowImageEnum.左上縮圖 ? TopImage : ButtomImage;
+                    if (power >= Convert.ToDouble(nowshow["magnetic"]) && !showimage)
+                    {
+                        ShowImage.WidthRequest = DrawLayoutSize.X * 0.19;
+                        ShowImage.HeightRequest = (ShowImage.WidthRequest + 40) * (DrawLayoutSize.Y / DrawLayoutSize.X) - 40;
+
+                        if ((byte)nowshow["showimage"] == (byte)ShowTemplate.ShowImageEnum.全螢幕)
+                        {
+                            if ((byte)nowshow["screenshottime"] == (byte)ShowTemplate.ScreenshotTimeEnum.清除按鈕)
+                            {
+                                FullPageimage = drawlayout.GetImageByte(SKEncodedImageFormat.Png, DrawLayout.ChooseImage.View);
+                            }
+                            drawlayout.ViewImage = SKImage.FromEncodedData(beforimage);
+                            drawlayout.InvalidateSurface();
+                        }
+                        else
+                        {
+                            Stream BackStream = new MemoryStream(drawlayout.GetImageByte(SKEncodedImageFormat.Png, DrawLayout.ChooseImage.BackGround));
+                            ((Image)((Grid)ShowImage.Content).Children[0]).Source = ImageSource.FromStream(() => BackStream);
+                            Stream ViewStream = new MemoryStream(beforimage);
+                            ((Image)((Grid)ShowImage.Content).Children[1]).Source = ImageSource.FromStream(() => ViewStream);
+                            ShowImage.IsVisible = true;
+                        }
+
+                        showimage = true;
+                    }
+                    else if (power < Convert.ToDouble(nowshow["magnetic"]) && showimage)
+                    {
+                        if ((byte)nowshow["showimage"] == (byte)ShowTemplate.ShowImageEnum.全螢幕)
+                        {
+                            if (nowshow["image"] != null)
+                            {
+                                if ((byte)nowshow["screenshottime"] == (byte)ShowTemplate.ScreenshotTimeEnum.清除按鈕)
+                                {
+                                    drawlayout.ViewImage = SKImage.FromEncodedData(FullPageimage);
+                                }
+                                else
+                                {
+                                    drawlayout.ViewImage = SKImage.FromEncodedData((byte[])nowshow["image"]);
+                                }
+                                drawlayout.InvalidateSurface();
+                            }
+                            else
+                            {
+                                drawlayout.Clear();
+                            }
+                        }
+                        else
+                        {
+                            ShowImage.IsVisible = false;
+                        }
+                        showimage = false;
+                    }
+                }
+            }
         }
 
         void OnClearClicked(object sender, EventArgs e)
@@ -153,7 +258,7 @@ namespace FL_Note
             }
             else if ((byte)nowshow["screenshottime"] == (byte)ShowTemplate.ScreenshotTimeEnum.清除按鈕)
             {
-                if(beforimage == null)
+                if(beforimage == null && !drawlayout.isClear)
                 {
                     beforimage = drawlayout.GetImageByte(SKEncodedImageFormat.Png, DrawLayout.ChooseImage.View);
                     if((bool)nowshow["savescreenshot"])
@@ -176,20 +281,7 @@ namespace FL_Note
 
         void SaveImage()
         {
-            SKBitmap map1 = SKBitmap.FromImage(SKImage.FromEncodedData(drawlayout.GetImageByte(SKEncodedImageFormat.Png, DrawLayout.ChooseImage.BackGround)));
-
-            SKBitmap map2 = SKBitmap.FromImage(SKImage.FromEncodedData(beforimage));
-
-            int offset = map1.Width / 2 - map2.Width / 2;
-            int offsetTop = map1.Height / 2 - map2.Height / 2;
-            using (SKSurface surface = SKSurface.Create(new SKImageInfo(map1.Width, map1.Height)))
-            using (MemoryStream memStream = new MemoryStream())
-            {
-                surface.Canvas.DrawBitmap(map1, SKRect.Create(offset, offsetTop, map1.Width, map1.Height));
-                surface.Canvas.DrawBitmap(map2, SKRect.Create(offset, offsetTop, map2.Width, map2.Height));
-                surface.Snapshot().Encode(SKEncodedImageFormat.Png, 100).SaveTo(memStream);
-                DependencyService.Get<IPhotoLibrary>().SavePhotoAsync(memStream.GetBuffer(), "FL-Note", Guid.NewGuid().ToString() + ".png");
-            }
+            App.photoLibrary.SavePhotoAsync(App.MergeImage(drawlayout.GetImageByte(SKEncodedImageFormat.Png, DrawLayout.ChooseImage.BackGround), beforimage), "FL-Note", Guid.NewGuid().ToString() + ".png");
         }
 
         Vector3 ToEulerAngles(Quaternion q)
@@ -243,6 +335,7 @@ namespace FL_Note
                             controler.IsVisible = true;
 
                             OrientationSensor.Stop();
+                            Magnetometer.Stop();
 
                             if (ShowPages.Children.Count == 1)
                             {
@@ -280,11 +373,11 @@ namespace FL_Note
 
             if (show["image"] != null)
             {
-                Stream stream = new MemoryStream((byte[])show["image"]);
+                Stream stream = new MemoryStream(App.ReSizeImage((byte[])show["image"], SizeForImage));
                 showTemplate1.Image = ImageSource.FromStream(() => stream);
             }
 
-            Stream stream2 = new MemoryStream(show["background"].GetType().Name == "Byte" ? (byte[])((object[])data["backgroundimage"])[(byte)show["background"]] : (byte[])show["background"]);
+            Stream stream2 = new MemoryStream(App.ReSizeImage(show["background"].GetType().Name == "Byte" ? (byte[])((object[])data["backgroundimage"])[(byte)show["background"]] : (byte[])show["background"], SizeForImage));
             showTemplate1.BackgroundImage = ImageSource.FromStream(() => stream2);
             showTemplate1.ShowImage = (ShowTemplate.ShowImageEnum)((byte)show["showimage"]);
             showTemplate1.ScreenshotTime = (ShowTemplate.ScreenshotTimeEnum)((byte)show["screenshottime"]);
@@ -324,6 +417,7 @@ namespace FL_Note
             Drawing.IsVisible = true;
             controler.IsVisible = false;
             OrientationSensor.Start(speed);
+            Magnetometer.Start(speed);
             //ShowPages.Children.Clear();
         }
 
@@ -345,8 +439,7 @@ namespace FL_Note
                 NewMod.IsVisible = false;
 
                 byte[] newimage = null;
-                SKBitmap map1 = SKBitmap.FromImage(SKImage.FromEncodedData(drawlayout.GetImageByte(SKEncodedImageFormat.Png, DrawLayout.ChooseImage.BackGround)));
-                using (SKSurface surface = SKSurface.Create(new SKImageInfo(map1.Width, map1.Height)))
+                using (SKSurface surface = SKSurface.Create(new SKImageInfo((int)SizeForImage.Width, (int)SizeForImage.Height)))
                 using (MemoryStream memStream = new MemoryStream())
                 {
                     surface.Snapshot().Encode(SKEncodedImageFormat.Png, 100).SaveTo(memStream);
@@ -414,10 +507,10 @@ namespace FL_Note
         {
             if (beforimage != null)
             {
-                TopImage.WidthRequest = 78;
-                TopImage.HeightRequest = (TopImage.WidthRequest + 40) * ((Bounds.Height - 50) / Bounds.Width) - 40;
-                ButtomImage.WidthRequest = 78;
-                ButtomImage.HeightRequest = (ButtomImage.WidthRequest + 40) * ((Bounds.Height - 50) / Bounds.Width) - 40;
+                TopImage.WidthRequest = DrawLayoutSize.X * 0.19;
+                TopImage.HeightRequest = (TopImage.WidthRequest + 40) * (DrawLayoutSize.Y / DrawLayoutSize.X) - 40;
+                ButtomImage.WidthRequest = DrawLayoutSize.X * 0.19;
+                ButtomImage.HeightRequest = (ButtomImage.WidthRequest + 40) * (DrawLayoutSize.Y / DrawLayoutSize.X) - 40;
 
                 Dictionary<string, object> nowshow = null;
                 foreach (Dictionary<string, object> show in (object[])data["setdata"])
@@ -443,6 +536,10 @@ namespace FL_Note
                                 {
                                     if ((byte)nowshow["showimage"] == (byte)ShowTemplate.ShowImageEnum.全螢幕)
                                     {
+                                        if ((byte)nowshow["screenshottime"] == (byte)ShowTemplate.ScreenshotTimeEnum.清除按鈕)
+                                        {
+                                            FullPageimage = drawlayout.GetImageByte(SKEncodedImageFormat.Png, DrawLayout.ChooseImage.View);
+                                        }
                                         drawlayout.ViewImage = SKImage.FromEncodedData(beforimage);
                                         drawlayout.InvalidateSurface();
                                     }
@@ -462,7 +559,14 @@ namespace FL_Note
                                     {
                                         if (nowshow["image"] != null)
                                         {
-                                            drawlayout.ViewImage = SKImage.FromEncodedData((byte[])nowshow["image"]);
+                                            if ((byte)nowshow["screenshottime"] == (byte)ShowTemplate.ScreenshotTimeEnum.清除按鈕)
+                                            {
+                                                drawlayout.ViewImage = SKImage.FromEncodedData(FullPageimage);
+                                            }
+                                            else
+                                            {
+                                                drawlayout.ViewImage = SKImage.FromEncodedData((byte[])nowshow["image"]);
+                                            }
                                             drawlayout.InvalidateSurface();
                                         }
                                         else
@@ -492,6 +596,10 @@ namespace FL_Note
                                     {
                                         if ((byte)nowshow["showimage"] == (byte)ShowTemplate.ShowImageEnum.全螢幕)
                                         {
+                                            if ((byte)nowshow["screenshottime"] == (byte)ShowTemplate.ScreenshotTimeEnum.清除按鈕)
+                                            {
+                                                FullPageimage = drawlayout.GetImageByte(SKEncodedImageFormat.Png, DrawLayout.ChooseImage.View);
+                                            }
                                             drawlayout.ViewImage = SKImage.FromEncodedData(beforimage);
                                             drawlayout.InvalidateSurface();
                                         }
@@ -510,7 +618,14 @@ namespace FL_Note
                                         {
                                             if (nowshow["image"] != null)
                                             {
-                                                drawlayout.ViewImage = SKImage.FromEncodedData((byte[])nowshow["image"]);
+                                                if ((byte)nowshow["screenshottime"] == (byte)ShowTemplate.ScreenshotTimeEnum.清除按鈕)
+                                                {
+                                                    drawlayout.ViewImage = SKImage.FromEncodedData(FullPageimage);
+                                                }
+                                                else
+                                                {
+                                                    drawlayout.ViewImage = SKImage.FromEncodedData((byte[])nowshow["image"]);
+                                                }
                                                 drawlayout.InvalidateSurface();
                                             }
                                             else
@@ -522,10 +637,10 @@ namespace FL_Note
                                         {
                                             ShowImage.IsVisible = false;
                                         }
-                                    }
-                                    else if (points.Count == 0)
-                                    {
-                                        showimage = false;
+                                        if (points.Count == 0)
+                                        {
+                                            showimage = false;
+                                        }
                                     }
                                 }
                             }
@@ -542,6 +657,10 @@ namespace FL_Note
                                     {
                                         if ((byte)nowshow["showimage"] == (byte)ShowTemplate.ShowImageEnum.全螢幕)
                                         {
+                                            if ((byte)nowshow["screenshottime"] == (byte)ShowTemplate.ScreenshotTimeEnum.清除按鈕)
+                                            {
+                                                FullPageimage = drawlayout.GetImageByte(SKEncodedImageFormat.Png, DrawLayout.ChooseImage.View);
+                                            }
                                             drawlayout.ViewImage = SKImage.FromEncodedData(beforimage);
                                             drawlayout.InvalidateSurface();
                                         }
@@ -560,7 +679,14 @@ namespace FL_Note
                                         {
                                             if (nowshow["image"] != null)
                                             {
-                                                drawlayout.ViewImage = SKImage.FromEncodedData((byte[])nowshow["image"]);
+                                                if ((byte)nowshow["screenshottime"] == (byte)ShowTemplate.ScreenshotTimeEnum.清除按鈕)
+                                                {
+                                                    drawlayout.ViewImage = SKImage.FromEncodedData(FullPageimage);
+                                                }
+                                                else
+                                                {
+                                                    drawlayout.ViewImage = SKImage.FromEncodedData((byte[])nowshow["image"]);
+                                                }
                                                 drawlayout.InvalidateSurface();
                                             }
                                             else
@@ -572,10 +698,10 @@ namespace FL_Note
                                         {
                                             ShowImage.IsVisible = false;
                                         }
-                                    }
-                                    else if (points.Count == 0)
-                                    {
-                                        showimage = false;
+                                        if (points.Count == 0)
+                                        {
+                                            showimage = false;
+                                        }
                                     }
                                 }
                             }
@@ -609,6 +735,10 @@ namespace FL_Note
                                     {
                                         if ((byte)nowshow["showimage"] == (byte)ShowTemplate.ShowImageEnum.全螢幕)
                                         {
+                                            if ((byte)nowshow["screenshottime"] == (byte)ShowTemplate.ScreenshotTimeEnum.清除按鈕)
+                                            {
+                                                FullPageimage = drawlayout.GetImageByte(SKEncodedImageFormat.Png, DrawLayout.ChooseImage.View);
+                                            }
                                             drawlayout.ViewImage = SKImage.FromEncodedData(beforimage);
                                             drawlayout.InvalidateSurface();
                                         }
@@ -642,7 +772,14 @@ namespace FL_Note
                                 {
                                     if (nowshow["image"] != null)
                                     {
-                                        drawlayout.ViewImage = SKImage.FromEncodedData((byte[])nowshow["image"]);
+                                        if ((byte)nowshow["screenshottime"] == (byte)ShowTemplate.ScreenshotTimeEnum.清除按鈕)
+                                        {
+                                            drawlayout.ViewImage = SKImage.FromEncodedData(FullPageimage);
+                                        }
+                                        else
+                                        {
+                                            drawlayout.ViewImage = SKImage.FromEncodedData((byte[])nowshow["image"]);
+                                        }
                                         drawlayout.InvalidateSurface();
                                     }
                                     else
@@ -672,7 +809,14 @@ namespace FL_Note
                                 {
                                     if (nowshow["image"] != null)
                                     {
-                                        drawlayout.ViewImage = SKImage.FromEncodedData((byte[])nowshow["image"]);
+                                        if ((byte)nowshow["screenshottime"] == (byte)ShowTemplate.ScreenshotTimeEnum.清除按鈕)
+                                        {
+                                            drawlayout.ViewImage = SKImage.FromEncodedData(FullPageimage);
+                                        }
+                                        else
+                                        {
+                                            drawlayout.ViewImage = SKImage.FromEncodedData((byte[])nowshow["image"]);
+                                        }
                                         drawlayout.InvalidateSurface();
                                     }
                                     else

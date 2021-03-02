@@ -4,5 +4,10 @@
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.VIBRATE" />
-	<application android:label="FL_Note.Android" android:icon="@mipmap/ic_launcher"></application>
+	<uses-feature android:name="android.hardware.sensor.compass" />
+	<application android:label="FL Note" android:icon="@mipmap/ic_launcher">
+		<provider android:name="android.support.v4.content.FileProvider" android:authorities="com.jimmiker.FL_Note.fileprovider" android:exported="false" android:grantUriPermissions="true">
+			<meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/provider_paths" />
+		</provider>
+	</application>
 </manifest>

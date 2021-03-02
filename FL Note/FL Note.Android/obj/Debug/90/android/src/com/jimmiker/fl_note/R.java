@@ -5828,7 +5828,8 @@ containing a value of this type.
         public static final int collectionViewStyle=0x7f090000;
     }
     public static final class xml {
-        public static final int xamarin_essentials_fileprovider_file_paths=0x7f080000;
+        public static final int provider_paths=0x7f080000;
+        public static final int xamarin_essentials_fileprovider_file_paths=0x7f080001;
     }
     public static final class styleable {
         /** Attributes that can be used with a ActionBar.

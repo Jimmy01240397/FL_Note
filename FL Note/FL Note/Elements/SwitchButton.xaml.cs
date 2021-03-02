@@ -14,6 +14,24 @@ namespace FL_Note.Elements
     {
         public MyList<string> Item { get; private set; } = new MyList<string>();
 
+
+        double _fontSize = 13;
+        public double FontSize
+        {
+            get
+            {
+                return _fontSize;
+            }
+            set
+            {
+                _fontSize = value;
+                for (int i = 0; i < buttonGrid.Children.Count; i++)
+                {
+                    ((Button)buttonGrid.Children[i]).FontSize = value;
+                }
+            }
+        }
+
         Color _selectedColor = Color.Black;
         public Color SelectedColor
         {
@@ -118,7 +136,8 @@ namespace FL_Note.Elements
             {
                 BackgroundColor = index == SelectedIndex ? SelectedColor : UnSelectedColor,
                 Text = obj,
-                TextColor = index == SelectedIndex ? SelectedTextColor : UnSelectedTextColor
+                TextColor = index == SelectedIndex ? SelectedTextColor : UnSelectedTextColor,
+                FontSize = this.FontSize
             };
             button.Clicked += BarButton_Clicked;
             Grid.SetColumn(button, index);
@@ -127,6 +146,7 @@ namespace FL_Note.Elements
 
         private void BarButton_Clicked(object sender, EventArgs e)
         {
+            double data = ((Button)sender).FontSize;
             SelectedIndex = (byte)buttonGrid.Children.IndexOf((View)sender);
         }
 

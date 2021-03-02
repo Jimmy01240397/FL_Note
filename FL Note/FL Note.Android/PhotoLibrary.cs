@@ -15,30 +15,22 @@ using Android.Support.V4.App;
 using System;
 using Android.Support.Design.Widget;
 using Environment = Android.OS.Environment;
-
-[assembly: Dependency(typeof(PhotoLibrary))]
+using FL_Note.Interface;
+using System.Numerics;
+using Android.Content.Res;
 
 namespace FL_Note.Droid
 {
     public class PhotoLibrary : IPhotoLibrary
     {
-        public Task<System.IO.Stream> PickPhotoAsync()
+        public void OpenGallery(Action<byte[]> DoAfterCall)
         {
-            // Define the Intent for getting images
-            Intent intent = new Intent();
-            intent.SetType("image/*");
-            intent.SetAction(Intent.ActionGetContent);
+            MainActivity.OpenGallery(DoAfterCall);
+        }
 
-            // Start the picture-picker activity (resumes in MainActivity.cs)
-            MainActivity.Instance.StartActivityForResult(
-                Intent.CreateChooser(intent, "Select Picture"),
-                MainActivity.PickImageId);
-
-            // Save the TaskCompletionSource object as a MainActivity property
-            MainActivity.Instance.PickImageTaskCompletionSource = new TaskCompletionSource<System.IO.Stream>();
-
-            // Return Task object
-            return MainActivity.Instance.PickImageTaskCompletionSource.Task;
+        public void CropPhoto(byte[] data, Vector2 Aspect, Vector2 Output, Action<byte[]> DoAfterCall)
+        {
+            MainActivity.CropPhoto(data, Aspect, Output, DoAfterCall);
         }
 
         // Saving photos requires android.permission.WRITE_EXTERNAL_STORAGE in AndroidManifest.xml
@@ -81,13 +73,35 @@ namespace FL_Note.Droid
             }
             if (!MainActivity.CheckPermission(Manifest.Permission.WriteExternalStorage))
             {
-                MainActivity.CallPermissions(new string[] { Manifest.Permission.WriteExternalStorage }, async () => { await doing(); });
+                MainActivity.CallPermissions(new string[] { Manifest.Permission.WriteExternalStorage }, async (permissions, grantResults) => 
+                {
+                    bool check = true;
+                    foreach(Permission permission in grantResults)
+                    {
+                        check = check && permission == Permission.Granted;
+                    }
+                    if (check)
+                    {
+                        await doing();
+                    }
+                });
                 return true;
             }
             else
             {
                 return await doing();
             }
+        }
+
+        public bool isApplicationInTheBackground()
+        {
+            bool isInBackground = false;
+
+            Android.App.ActivityManager.RunningAppProcessInfo myProcess = new Android.App.ActivityManager.RunningAppProcessInfo();
+            Android.App.ActivityManager.GetMyMemoryState(myProcess);
+            isInBackground = myProcess.Importance != Android.App.Importance.Foreground;
+
+            return isInBackground;
         }
     }
 }
