@@ -31,6 +31,8 @@ namespace FL_Note
 
         bool showimage = false;
 
+        bool isClear = false;
+
         public Dictionary<string, object> data;
 
         public List<long> points = new List<long>();
@@ -99,9 +101,15 @@ namespace FL_Note
 
         }
 
+        public void Reset()
+        {
+            beforimage = null;
+            isClear = false;
+        }
+
         void OrientationSensor_ReadingChanged(object sender, OrientationSensorChangedEventArgs e)
         {
-            if (!App.photoLibrary.isApplicationInTheBackground())
+            if (!App.photoLibrary.isApplicationInTheBackground() && !isClear)
             {
                 Vector3 angle = ToEulerAngles(e.Reading.Orientation);
                 if ((angle.X > 175 || angle.X < -175) && (angle.Y < 5 && angle.Y > -5))
@@ -253,12 +261,16 @@ namespace FL_Note
             }
             if ((byte)nowshow["screenshottime"] == (byte)ShowTemplate.ScreenshotTimeEnum.面朝下)
             {
-                beforimage = null;
+                if (beforimage != null)
+                {
+                    beforimage = null;
+                    isClear = true;
+                }
                 drawlayout.Clear();
             }
             else if ((byte)nowshow["screenshottime"] == (byte)ShowTemplate.ScreenshotTimeEnum.清除按鈕)
             {
-                if(beforimage == null && !drawlayout.isClear)
+                if(beforimage == null && !drawlayout.isClear && !isClear)
                 {
                     beforimage = drawlayout.GetImageByte(SKEncodedImageFormat.Png, DrawLayout.ChooseImage.View);
                     if((bool)nowshow["savescreenshot"])
@@ -273,7 +285,11 @@ namespace FL_Note
                 }
                 else
                 {
-                    beforimage = null;
+                    if (beforimage != null)
+                    {
+                        beforimage = null;
+                        isClear = true;
+                    }
                     drawlayout.Clear();
                 }
             }
@@ -421,9 +437,28 @@ namespace FL_Note
             //ShowPages.Children.Clear();
         }
 
+        void ResetClick(object sender, EventArgs e)
+        {
+            OnReset.Children[1].WidthRequest = DrawLayoutSize.X * 0.875;
+            OnReset.Children[1].HeightRequest = NewMod.Children[1].WidthRequest * 0.445;
+            OnReset.IsVisible = true;
+        }
+
+        void OnResetClick(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            if (button.Text != "取消")
+            {
+                Reset();
+            }
+            OnReset.IsVisible = false;
+        }
+
         void MakeNewClick(object sender, EventArgs e)
         {
             NewModName.Text = "";
+            NewMod.Children[1].WidthRequest = DrawLayoutSize.X * 0.875;
+            NewMod.Children[1].HeightRequest = NewMod.Children[1].WidthRequest * 0.445;
             NewMod.IsVisible = true;
         }
 

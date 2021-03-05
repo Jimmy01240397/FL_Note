@@ -189,7 +189,10 @@ namespace FL_Note.Elements
         private void DeleteButton_Clicked(object sender, EventArgs e)
         {
             mainPage.DeleteShow = this;
-            (mainPage.FindByName<Grid>("OnDelete")).IsVisible = true;
+            Grid OnDelete = (mainPage.FindByName<Grid>("OnDelete"));
+            OnDelete.Children[1].WidthRequest = mainPage.DrawLayoutSize.X * 0.875;
+            OnDelete.Children[1].HeightRequest = OnDelete.Children[1].WidthRequest * 0.445;
+            OnDelete.IsVisible = true;
         }
     }
 }

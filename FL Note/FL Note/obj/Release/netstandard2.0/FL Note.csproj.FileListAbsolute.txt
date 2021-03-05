@@ -18,3 +18,4 @@ C:\Users\user\Desktop\FL Note\FL Note\FL Note\obj\Release\netstandard2.0\Element
 C:\Users\user\Desktop\FL Note\FL Note\FL Note\obj\Release\netstandard2.0\SubPages\EditPage.xaml.g.cs
 C:\Users\user\Desktop\FL Note\FL Note\FL Note\obj\Release\netstandard2.0\SubPages\SettingTemplate.xaml.g.cs
 C:\Users\user\Desktop\FL Note\FL Note\FL Note\obj\Release\netstandard2.0\FL Note.csproj.CopyComplete
+C:\Users\user\Desktop\FL Note\FL Note\FL Note\obj\Release\netstandard2.0\FL Note.csprojAssemblyReference.cache
