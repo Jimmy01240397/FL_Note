@@ -62,11 +62,11 @@ namespace FL_Note.Elements
             }
         }
 
-        public ImageSource Image
+        public MyImageSource Image
         {
             get
             {
-                return ((Image)((Grid)MagicImage.Content).Children[1]).Source;
+                return (MyImageSource)((Image)((Grid)MagicImage.Content).Children[1]).Source;
             }
             set
             {
@@ -74,16 +74,16 @@ namespace FL_Note.Elements
             }
         }
 
-        public ImageSource BackgroundImage
+        public MyImageSource BackgroundImage
         {
             get
             {
-                return ((Image)BackGroundImage.Content).Source;
+                return (MyImageSource)((Image)BackGroundImage.Content).Source;
             }
             set
             {
                 ((Image)BackGroundImage.Content).Source = value;
-                ((Image)((Grid)MagicImage.Content).Children[0]).Source = CopyImageSource(value);
+                ((Image)((Grid)MagicImage.Content).Children[0]).Source = MyImageSource.FromBytes(value.ImageBytes);
             }
         }
 
@@ -145,12 +145,9 @@ namespace FL_Note.Elements
             }
         }
 
-        public static ImageSource CopyImageSource(ImageSource Source)
+        /*public static ImageSource CopyImageSource(ImageSource Source)
         {
-            StreamImageSource streamImageSource = (StreamImageSource)Source;
-            Task<Stream> task = streamImageSource.Stream(System.Threading.CancellationToken.None);
-            MemoryStream data = (MemoryStream)task.Result;
-            byte[] image = data.ToArray();
+            byte[] image = ImageSourceToBytes(Source);
             Stream stream = new MemoryStream(image);
             return ImageSource.FromStream(() => stream);
         }
@@ -162,7 +159,7 @@ namespace FL_Note.Elements
             MemoryStream data = (MemoryStream)task.Result;
             byte[] image = data.ToArray();
             return image;
-        }
+        }*/
 
         public ShowTemplate (MainPage mainPage)
 		{

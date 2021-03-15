@@ -31,17 +31,30 @@ namespace FL_Note.Elements
         {
             get
             {
-                return viewImage;
+                SKPixmap viewpix = ViewSurface.PeekPixels();
+                if (viewImage != null)
+                {
+                    ViewSurface.Canvas.DrawImage(viewImage, SKRect.Create(new SKPoint(0, 0), new SKSize(viewpix.Width, viewpix.Height)));
+                }
+                foreach (SKPath path in completedPaths)
+                {
+                    //ViewSurface.Canvas.DrawPath(path, paint);
+                    ViewSurface.Canvas.DrawPath(path, paint);
+                }
+                SKImage ans = ViewSurface.Snapshot();
+                ViewSurface.Canvas.Clear();
+                return ans;
             }
             set
             {
                 viewImage = value;
-                newimage = true;
+                completedPaths.Clear();
+                //newimage = true;
             }
         }
         public SKImage BackImage { get; set; } = null;
-        List<SKImage> imagebefores = new List<SKImage>();
-        bool newimage = false;
+        //List<SKImage> imagebefores = new List<SKImage>();
+        //bool newimage = false;
 
         SKSize _allViewSize = new SKSize();
         public SKSize AllViewSize
@@ -109,7 +122,7 @@ namespace FL_Note.Elements
         {
             get
             {
-                return imagebefores.Count > 0;
+                return completedPaths.Count > 0;
             }
         }
 
@@ -207,8 +220,17 @@ namespace FL_Note.Elements
 
             SKPixmap viewpix = ViewSurface.PeekPixels();
             SKPixmap viewpix2 = args.Surface.PeekPixels();
+
+            /*if (ViewSurface == null && viewImage != null)
+            {
+                ViewSurface.Canvas.DrawImage(viewImage, SKRect.Create(new SKPoint(0, 0), new SKSize(viewpix.Width, viewpix.Height)));
+            }*/
             canvas.Clear();
-            if (inProgressPaths.Count == 0)
+            if (viewImage != null)
+            {
+                canvas.DrawImage(viewImage, SKRect.Create(new SKPoint(0, 0), new SKSize(viewpix.Width, viewpix.Height)));
+            }
+            /*if (inProgressPaths.Count == 0)
             {
                 if (viewImage == null)
                 {
@@ -251,22 +273,26 @@ namespace FL_Note.Elements
                 EndDraw?.Invoke(sender, args);
             }
             else
-            {
-                ViewSurface.Canvas.Clear();
-                ViewSurface.Canvas.DrawImage(viewImage, SKRect.Create(new SKPoint(0, 0), new SKSize(viewpix.Width, viewpix.Height)));
-                canvas.DrawSurface(ViewSurface, new SKPoint(0, 0));
+            {*/
+                //ViewSurface.Canvas.Clear();
+                //ViewSurface.Canvas.DrawImage(viewImage, SKRect.Create(new SKPoint(0, 0), new SKSize(viewpix.Width, viewpix.Height)));
+                //canvas.DrawSurface(ViewSurface, new SKPoint(0, 0));
 
                 foreach (SKPath path in completedPaths)
                 {
-                    ViewSurface.Canvas.DrawPath(path, paint);
+                    //ViewSurface.Canvas.DrawPath(path, paint);
                     canvas.DrawPath(path, paint);
                 }
 
                 foreach (SKPath path in inProgressPaths.Values)
                 {
-                    ViewSurface.Canvas.DrawPath(path, paint);
+                    //ViewSurface.Canvas.DrawPath(path, paint);
                     canvas.DrawPath(path, paint);
                 }
+            //}
+            if (inProgressPaths.Count == 0)
+            {
+                EndDraw?.Invoke(sender, args);
             }
         }
 
@@ -316,18 +342,23 @@ namespace FL_Note.Elements
         {
             completedPaths.Clear();
             inProgressPaths.Clear();
-            imagebefores.Clear();
+            //imagebefores.Clear();
             viewImage = null;
             canvasView.InvalidateSurface();
         }
 
         public void Restore()
         {
-            if (CanRestore && inProgressPaths.Count == 0 && completedPaths.Count == 0)
+            if (CanRestore && inProgressPaths.Count == 0)
+            {
+                completedPaths.RemoveAt(completedPaths.Count - 1);
+                canvasView.InvalidateSurface();
+            }
+            /*if (CanRestore && inProgressPaths.Count == 0 && completedPaths.Count == 0)
             {
                 viewImage = null;
                 canvasView.InvalidateSurface();
-            }
+            }*/
         }
 
         public void InvalidateSurface()
@@ -345,7 +376,7 @@ namespace FL_Note.Elements
                 {
                     case ChooseImage.View:
                         {
-                            sKImage = viewImage;
+                            sKImage = ViewImage;
                         }
                         break;
                     case ChooseImage.BackGround:

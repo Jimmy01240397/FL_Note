@@ -103,6 +103,10 @@ namespace FL_Note
 
         public void Reset()
         {
+            ((Image)((Grid)TopImage.Content).Children[0]).Source = null;
+            ((Image)((Grid)TopImage.Content).Children[1]).Source = null;
+            ((Image)((Grid)ButtomImage.Content).Children[0]).Source = null;
+            ((Image)((Grid)ButtomImage.Content).Children[1]).Source = null;
             beforimage = null;
             isClear = false;
         }
@@ -193,7 +197,7 @@ namespace FL_Note
                     Frame ShowImage = (byte)nowshow["showimage"] == (byte)ShowTemplate.ShowImageEnum.左上縮圖 ? TopImage : ButtomImage;
                     if (power >= Convert.ToDouble(nowshow["magnetic"]) && !showimage)
                     {
-                        ShowImage.WidthRequest = DrawLayoutSize.X * 0.19;
+                        ShowImage.WidthRequest = DrawLayoutSize.X * 0.1;
                         ShowImage.HeightRequest = (ShowImage.WidthRequest + 40) * (DrawLayoutSize.Y / DrawLayoutSize.X) - 40;
 
                         if ((byte)nowshow["showimage"] == (byte)ShowTemplate.ShowImageEnum.全螢幕)
@@ -207,10 +211,14 @@ namespace FL_Note
                         }
                         else
                         {
-                            Stream BackStream = new MemoryStream(drawlayout.GetImageByte(SKEncodedImageFormat.Png, DrawLayout.ChooseImage.BackGround));
-                            ((Image)((Grid)ShowImage.Content).Children[0]).Source = ImageSource.FromStream(() => BackStream);
-                            Stream ViewStream = new MemoryStream(beforimage);
-                            ((Image)((Grid)ShowImage.Content).Children[1]).Source = ImageSource.FromStream(() => ViewStream);
+                            if (((Image)((Grid)ShowImage.Content).Children[0]).Source == null)
+                            {
+                                ((Image)((Grid)ShowImage.Content).Children[0]).Source = MyImageSource.FromBytes(drawlayout.GetImageByte(SKEncodedImageFormat.Png, DrawLayout.ChooseImage.BackGround));
+                            }
+                            if (((Image)((Grid)ShowImage.Content).Children[1]).Source == null)
+                            {
+                                ((Image)((Grid)ShowImage.Content).Children[1]).Source = MyImageSource.FromBytes(beforimage);
+                            }
                             ShowImage.IsVisible = true;
                         }
 
@@ -261,11 +269,11 @@ namespace FL_Note
             }
             if ((byte)nowshow["screenshottime"] == (byte)ShowTemplate.ScreenshotTimeEnum.面朝下)
             {
-                if (beforimage != null)
+                /*if (beforimage != null)
                 {
                     beforimage = null;
                     isClear = true;
-                }
+                }*/
                 drawlayout.Clear();
             }
             else if ((byte)nowshow["screenshottime"] == (byte)ShowTemplate.ScreenshotTimeEnum.清除按鈕)
@@ -285,11 +293,11 @@ namespace FL_Note
                 }
                 else
                 {
-                    if (beforimage != null)
+                    /*if (beforimage != null)
                     {
                         beforimage = null;
                         isClear = true;
-                    }
+                    }*/
                     drawlayout.Clear();
                 }
             }
@@ -389,12 +397,10 @@ namespace FL_Note
 
             if (show["image"] != null)
             {
-                Stream stream = new MemoryStream(App.ReSizeImage((byte[])show["image"], SizeForImage));
-                showTemplate1.Image = ImageSource.FromStream(() => stream);
+                showTemplate1.Image = MyImageSource.FromBytes(App.ReSizeImage((byte[])show["image"], SizeForImage));
             }
 
-            Stream stream2 = new MemoryStream(App.ReSizeImage(show["background"].GetType().Name == "Byte" ? (byte[])((object[])data["backgroundimage"])[(byte)show["background"]] : (byte[])show["background"], SizeForImage));
-            showTemplate1.BackgroundImage = ImageSource.FromStream(() => stream2);
+            showTemplate1.BackgroundImage = MyImageSource.FromBytes(App.ReSizeImage(show["background"].GetType().Name == "Byte" ? (byte[])((object[])data["backgroundimage"])[(byte)show["background"]] : (byte[])show["background"], SizeForImage));
             showTemplate1.ShowImage = (ShowTemplate.ShowImageEnum)((byte)show["showimage"]);
             showTemplate1.ScreenshotTime = (ShowTemplate.ScreenshotTimeEnum)((byte)show["screenshottime"]);
             showTemplate1.SaveScreenshot = (bool)show["savescreenshot"];
@@ -406,18 +412,18 @@ namespace FL_Note
         void OnControlerClick(object sender, EventArgs e)
         {
             bool change = false;
-            for(int i = 0; i < ShowPages.Children.Count - 1; i++)
+            for (int i = 0; i < ShowPages.Children.Count - 1; i++)
             {
                 ShowTemplate showTemplate = (ShowTemplate)ShowPages.Children[i];
                 Dictionary<string, object> show = (Dictionary<string, object>)((object[])data["setdata"])[i];
                 RadioButton radioButton = (showTemplate.FindByName<RadioButton>("LabelRadio"));
-                if(radioButton.IsChecked != (bool)show["enable"])
+                if (radioButton.IsChecked != (bool)show["enable"])
                 {
                     show["enable"] = radioButton.IsChecked;
                     change = true;
                 }
             }
-            if(change)
+            if (change)
             {
                 App.WriteData(data);
             }
@@ -430,6 +436,10 @@ namespace FL_Note
                     break;
                 }
             }
+            ((Image)((Grid)TopImage.Content).Children[0]).Source = null;
+            ((Image)((Grid)TopImage.Content).Children[1]).Source = null;
+            ((Image)((Grid)ButtomImage.Content).Children[0]).Source = null;
+            ((Image)((Grid)ButtomImage.Content).Children[1]).Source = null;
             Drawing.IsVisible = true;
             controler.IsVisible = false;
             OrientationSensor.Start(speed);
@@ -542,9 +552,9 @@ namespace FL_Note
         {
             if (beforimage != null)
             {
-                TopImage.WidthRequest = DrawLayoutSize.X * 0.19;
+                TopImage.WidthRequest = DrawLayoutSize.X * 0.1;
                 TopImage.HeightRequest = (TopImage.WidthRequest + 40) * (DrawLayoutSize.Y / DrawLayoutSize.X) - 40;
-                ButtomImage.WidthRequest = DrawLayoutSize.X * 0.19;
+                ButtomImage.WidthRequest = DrawLayoutSize.X * 0.1;
                 ButtomImage.HeightRequest = (ButtomImage.WidthRequest + 40) * (DrawLayoutSize.Y / DrawLayoutSize.X) - 40;
 
                 Dictionary<string, object> nowshow = null;
@@ -580,10 +590,14 @@ namespace FL_Note
                                     }
                                     else
                                     {
-                                        Stream BackStream = new MemoryStream(drawlayout.GetImageByte(SKEncodedImageFormat.Png, DrawLayout.ChooseImage.BackGround));
-                                        ((Image)((Grid)ShowImage.Content).Children[0]).Source = ImageSource.FromStream(() => BackStream);
-                                        Stream ViewStream = new MemoryStream(beforimage);
-                                        ((Image)((Grid)ShowImage.Content).Children[1]).Source = ImageSource.FromStream(() => ViewStream);
+                                        if (((Image)((Grid)ShowImage.Content).Children[0]).Source == null)
+                                        {
+                                            ((Image)((Grid)ShowImage.Content).Children[0]).Source = MyImageSource.FromBytes(drawlayout.GetImageByte(SKEncodedImageFormat.Png, DrawLayout.ChooseImage.BackGround));
+                                        }
+                                        if (((Image)((Grid)ShowImage.Content).Children[1]).Source == null)
+                                        {
+                                            ((Image)((Grid)ShowImage.Content).Children[1]).Source = MyImageSource.FromBytes(beforimage);
+                                        }
                                         ShowImage.IsVisible = true;
                                     }
                                     showimage = true;
@@ -640,10 +654,14 @@ namespace FL_Note
                                         }
                                         else
                                         {
-                                            Stream BackStream = new MemoryStream(drawlayout.GetImageByte(SKEncodedImageFormat.Png, DrawLayout.ChooseImage.BackGround));
-                                            ((Image)((Grid)ShowImage.Content).Children[0]).Source = ImageSource.FromStream(() => BackStream);
-                                            Stream ViewStream = new MemoryStream(beforimage);
-                                            ((Image)((Grid)ShowImage.Content).Children[1]).Source = ImageSource.FromStream(() => ViewStream);
+                                            if (((Image)((Grid)ShowImage.Content).Children[0]).Source == null)
+                                            {
+                                                ((Image)((Grid)ShowImage.Content).Children[0]).Source = MyImageSource.FromBytes(drawlayout.GetImageByte(SKEncodedImageFormat.Png, DrawLayout.ChooseImage.BackGround));
+                                            }
+                                            if (((Image)((Grid)ShowImage.Content).Children[1]).Source == null)
+                                            {
+                                                ((Image)((Grid)ShowImage.Content).Children[1]).Source = MyImageSource.FromBytes(beforimage);
+                                            }
                                             ShowImage.IsVisible = true;
                                         }
                                     }
@@ -701,10 +719,14 @@ namespace FL_Note
                                         }
                                         else
                                         {
-                                            Stream BackStream = new MemoryStream(drawlayout.GetImageByte(SKEncodedImageFormat.Png, DrawLayout.ChooseImage.BackGround));
-                                            ((Image)((Grid)ShowImage.Content).Children[0]).Source = ImageSource.FromStream(() => BackStream);
-                                            Stream ViewStream = new MemoryStream(beforimage);
-                                            ((Image)((Grid)ShowImage.Content).Children[1]).Source = ImageSource.FromStream(() => ViewStream);
+                                            if (((Image)((Grid)ShowImage.Content).Children[0]).Source == null)
+                                            {
+                                                ((Image)((Grid)ShowImage.Content).Children[0]).Source = MyImageSource.FromBytes(drawlayout.GetImageByte(SKEncodedImageFormat.Png, DrawLayout.ChooseImage.BackGround));
+                                            }
+                                            if (((Image)((Grid)ShowImage.Content).Children[1]).Source == null)
+                                            {
+                                                ((Image)((Grid)ShowImage.Content).Children[1]).Source = MyImageSource.FromBytes(beforimage);
+                                            }
                                             ShowImage.IsVisible = true;
                                         }
                                     }
@@ -779,10 +801,14 @@ namespace FL_Note
                                         }
                                         else
                                         {
-                                            Stream BackStream = new MemoryStream(drawlayout.GetImageByte(SKEncodedImageFormat.Png, DrawLayout.ChooseImage.BackGround));
-                                            ((Image)((Grid)ShowImage.Content).Children[0]).Source = ImageSource.FromStream(() => BackStream);
-                                            Stream ViewStream = new MemoryStream(beforimage);
-                                            ((Image)((Grid)ShowImage.Content).Children[1]).Source = ImageSource.FromStream(() => ViewStream);
+                                            if (((Image)((Grid)ShowImage.Content).Children[0]).Source == null)
+                                            {
+                                                ((Image)((Grid)ShowImage.Content).Children[0]).Source = MyImageSource.FromBytes(drawlayout.GetImageByte(SKEncodedImageFormat.Png, DrawLayout.ChooseImage.BackGround));
+                                            }
+                                            if (((Image)((Grid)ShowImage.Content).Children[1]).Source == null)
+                                            {
+                                                ((Image)((Grid)ShowImage.Content).Children[1]).Source = MyImageSource.FromBytes(beforimage);
+                                            }
                                             ShowImage.IsVisible = true;
                                         }
                                         showimage = true;

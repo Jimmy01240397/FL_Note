@@ -99,22 +99,19 @@ namespace FL_Note.SubPages
                             imageButton1.BackgroundColor = color;
                         }
 
-                        ImageSource source;
+                        MyImageSource source;
                         if(image != null)
                         {
-                            Stream stream1 = new MemoryStream(App.ReSizeImage(image, mainPage.SizeForImage));
-                            source = ImageSource.FromStream(() => stream1);
+                            source = MyImageSource.FromBytes(App.ReSizeImage(image, mainPage.SizeForImage));
                         }
                         else
                         {
                             string assemblyName = GetType().GetTypeInfo().Assembly.GetName().Name;
-                            Stream stream2;
                             using (Stream stream = IntrospectionExtensions.GetTypeInfo(typeof(MainPage)).Assembly.GetManifestResourceStream(assemblyName + ".Images.BackGround.PickBackGround.png"))
                             using (var reader = new BinaryReader(stream))
                             {
-                                stream2 = new MemoryStream(App.ReSizeImage(reader.ReadBytes((int)stream.Length), mainPage.SizeForImage));
+                                source = MyImageSource.FromBytes(App.ReSizeImage(reader.ReadBytes((int)stream.Length), mainPage.SizeForImage));
                             }
-                            source = ImageSource.FromStream(() => stream2);
                         }
 
                         imageButton1.WidthRequest = mainPage.DrawLayoutSize.X * 0.403;
@@ -156,11 +153,11 @@ namespace FL_Note.SubPages
             }
         }
 
-        public ImageSource Image
+        public MyImageSource Image
         {
             get
             {
-                return ((Image)((Grid)WorkingImage.Content).Children[1]).Source;
+                return (MyImageSource)((Image)((Grid)WorkingImage.Content).Children[1]).Source;
             }
             set
             {
@@ -168,11 +165,11 @@ namespace FL_Note.SubPages
             }
         }
 
-        public ImageSource BackImage
+        public MyImageSource BackImage
         {
             get
             {
-                return ((Image)((Grid)WorkingImage.Content).Children[0]).Source;
+                return (MyImageSource)((Image)((Grid)WorkingImage.Content).Children[0]).Source;
             }
             set
             {
@@ -196,8 +193,8 @@ namespace FL_Note.SubPages
                 Magnetometer.Start(speed);
 
 
-                BackImage = ShowTemplate.CopyImageSource(value.BackgroundImage);
-                Image = ShowTemplate.CopyImageSource(value.Image);
+                BackImage = MyImageSource.FromBytes(value.BackgroundImage.ImageBytes);
+                Image = MyImageSource.FromBytes(value.Image.ImageBytes);
                 name.Text = value.Name;
                 showimage.SelectedIndex = (byte)value.ShowImage;
                 screenshottime.SelectedIndex = (byte)value.ScreenshotTime;
@@ -211,7 +208,7 @@ namespace FL_Note.SubPages
 
                 BackGroundindex = show["background"].GetType().Name == "Byte" ? (byte)show["background"] : (byte)((object[])_mainPage.data["backgroundimage"]).Length;
                 IsOnBackImage = show["background"].GetType().Name != "Byte";
-                if (IsOnBackImage) AllBackGround[AllBackGround.Count - 1].Source = ShowTemplate.CopyImageSource(value.BackgroundImage);
+                if (IsOnBackImage) AllBackGround[AllBackGround.Count - 1].Source = MyImageSource.FromBytes(value.BackgroundImage.ImageBytes);
             }
         }
 
@@ -250,22 +247,21 @@ namespace FL_Note.SubPages
             }
             if (Image != showTemplate.Image)
             {
-                show["image"] = ShowTemplate.ImageSourceToBytes(Image);
-                showTemplate.Image = ShowTemplate.CopyImageSource(Image);
+                show["image"] = Image.ImageBytes;
+                showTemplate.Image = MyImageSource.FromBytes(Image.ImageBytes);
                 change = true;
             }
             if((show["background"].GetType() != ((byte)0).GetType() && IsOnBackImage) || BackGroundindex != (byte)show["background"])
             {
                 if (BackGroundindex == AllBackGround.Count - 1)
                 {
-                    show["background"] = ShowTemplate.ImageSourceToBytes(BackImage);
-                    Stream stream = new MemoryStream((byte[])show["background"]);
-                    showTemplate.BackgroundImage = ImageSource.FromStream(() => stream);
+                    show["background"] = BackImage.ImageBytes;
+                    showTemplate.BackgroundImage = MyImageSource.FromBytes((byte[])show["background"]);
                 }
                 else
                 {
                     show["background"] = BackGroundindex;
-                    showTemplate.BackgroundImage = ShowTemplate.CopyImageSource(BackImage);
+                    showTemplate.BackgroundImage = MyImageSource.FromBytes(BackImage.ImageBytes);
                 }
                 change = true;
             }
@@ -325,12 +321,11 @@ namespace FL_Note.SubPages
         {
             App.photoLibrary.OpenGallery((data) =>
             {
-                SkiaSharp.SKImage SKBack = SkiaSharp.SKImage.FromEncodedData(ShowTemplate.ImageSourceToBytes(BackImage));
+                SkiaSharp.SKImage SKBack = SkiaSharp.SKImage.FromEncodedData(BackImage.ImageBytes);
                 int fa = Factor(SKBack.Width, SKBack.Height);
                 App.photoLibrary.CropPhoto(data, new System.Numerics.Vector2(SKBack.Width / fa, SKBack.Height / fa), new System.Numerics.Vector2(SKBack.Width, SKBack.Height), (data2) =>
                 {
-                    Stream stream = new MemoryStream(App.MergeImage(data2, new SkiaSharp.SKSize(SKBack.Width, SKBack.Height), ShowTemplate.ImageSourceToBytes(Image)));
-                    Image = ImageSource.FromStream(() => stream);
+                    Image = MyImageSource.FromBytes(App.MergeImage(data2, new SkiaSharp.SKSize(SKBack.Width, SKBack.Height), Image.ImageBytes));
                 });
             });
         }
@@ -343,13 +338,12 @@ namespace FL_Note.SubPages
             {
                 App.photoLibrary.OpenGallery((data) =>
                 {
-                    SkiaSharp.SKImage SKBack = SkiaSharp.SKImage.FromEncodedData(ShowTemplate.ImageSourceToBytes(BackImage));
+                    SkiaSharp.SKImage SKBack = SkiaSharp.SKImage.FromEncodedData(BackImage.ImageBytes);
                     int fa = Factor(SKBack.Width, SKBack.Height);
                     App.photoLibrary.CropPhoto(data, new System.Numerics.Vector2(SKBack.Width / fa, SKBack.Height / fa), new System.Numerics.Vector2(SKBack.Width, SKBack.Height), (data2) =>
                     {
-                        Stream stream = new MemoryStream(data2);
-                        ((ImageButton)sender).Source = ImageSource.FromStream(() => stream);
-                        BackImage = ShowTemplate.CopyImageSource(((ImageButton)sender).Source);
+                        ((ImageButton)sender).Source = MyImageSource.FromBytes(data2);
+                        BackImage = MyImageSource.FromBytes(data2);
                         BackGroundindex = nowindex;
                         IsOnBackImage = true;
                     });
@@ -361,15 +355,14 @@ namespace FL_Note.SubPages
                 object[] backGrounds = ((object[])_mainPage.data["backgroundimage"]);
                 if (nowindex != (byte)backGrounds.Length)
                 {
-                    Stream stream = new MemoryStream(App.ReSizeImage((byte[])backGrounds[nowindex], mainPage.SizeForImage));
-                    BackImage = ImageSource.FromStream(() => stream);
+                    BackImage = MyImageSource.FromBytes(App.ReSizeImage((byte[])backGrounds[nowindex], mainPage.SizeForImage));
                     BackGroundindex = nowindex;
                 }
                 else
                 {
                     if (IsOnBackImage)
                     {
-                        BackImage = ShowTemplate.CopyImageSource(((ImageButton)sender).Source);
+                        BackImage = MyImageSource.FromBytes(((MyImageSource)((ImageButton)sender).Source).ImageBytes);
                         BackGroundindex = nowindex;
                     }
                     else

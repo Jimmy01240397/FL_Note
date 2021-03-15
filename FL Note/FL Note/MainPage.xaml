@@ -17,7 +17,7 @@
 
                 <elements:DrawLayout x:Name="drawlayout" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" TouchAction="Drawlayout_TouchAction"/>
 
-                <Frame x:Name="TopImage" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" WidthRequest="78" HeightRequest="180" BorderColor="Black" IsVisible="False">
+                <Frame x:Name="TopImage" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" WidthRequest="78" HeightRequest="180" Rotation="180" BorderColor="Black" IsVisible="False">
                     <Grid Margin="-15" RowSpacing="0" ColumnSpacing="0">
                         <Image BackgroundColor="Transparent"/>
                         <Image BackgroundColor="Transparent"/>

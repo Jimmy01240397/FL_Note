@@ -30,8 +30,8 @@ namespace FL_Note.SubPages
                 _settingTemplate = value;
 
                 drawing.AllViewSize = new SKSize(value.mainPage.FindByName<DrawLayout>("drawlayout").BackImage.Width, value.mainPage.FindByName<DrawLayout>("drawlayout").BackImage.Height);
-                drawing.ViewImage = SKImage.FromEncodedData(ShowTemplate.ImageSourceToBytes(value.Image));
-                drawing.BackImage = SKImage.FromEncodedData(ShowTemplate.ImageSourceToBytes(value.BackImage));
+                drawing.ViewImage = SKImage.FromEncodedData(((MyImageSource)value.Image).ImageBytes);
+                drawing.BackImage = SKImage.FromEncodedData(((MyImageSource)value.BackImage).ImageBytes);
             }
         }
 
@@ -57,8 +57,7 @@ namespace FL_Note.SubPages
 
         private void OnSaveClicked(object sender, EventArgs e)
         {
-            Stream stream = new MemoryStream(drawing.GetImageByte(SKEncodedImageFormat.Png, DrawLayout.ChooseImage.View));
-            settingTemplate.Image = ImageSource.FromStream(() => stream);
+            settingTemplate.Image = MyImageSource.FromBytes(drawing.GetImageByte(SKEncodedImageFormat.Png, DrawLayout.ChooseImage.View));
             //drawing.Save(SKEncodedImageFormat.Png, Elements.DrawLayout.ChooseImage.View, "FL-Note", Guid.NewGuid().ToString() + ".png");
         }
 

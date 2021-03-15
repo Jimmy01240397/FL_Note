@@ -9,6 +9,8 @@ C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\asset
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\SkiaSharp.Views.Forms.dll
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\System.Core.dll
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\System.dll
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\System.Numerics.dll
+C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\System.Numerics.Vectors.dll
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\System.Xml.dll
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\System.Xml.Linq.dll
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\TouchTracking.dll
@@ -59,10 +61,8 @@ C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\asset
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\Xamarin.Forms.Platform.Android.dll
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\Xamarin.Forms.Platform.dll
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\Xamarin.Forms.Xaml.dll
-C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\System.Numerics.Vectors.dll
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\netstandard.dll
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\System.Data.dll
-C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\System.Numerics.dll
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\System.Transactions.dll
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\System.IO.Compression.dll
 C:\Users\user\Desktop\FL Note\FL Note\FL Note.Android\obj\Debug\90\android\assets\System.IO.Compression.FileSystem.dll

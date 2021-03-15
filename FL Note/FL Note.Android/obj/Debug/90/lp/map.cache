@@ -52,6 +52,6 @@ Xamarin.Forms.Core
 Xamarin.Forms.Platform.Android
 Xamarin.Forms.Platform
 Xamarin.Forms.Xaml
-System.Numerics.Vectors
+netstandard
 UnityNetwork
 System.Threading
